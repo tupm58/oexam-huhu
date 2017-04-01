@@ -5,12 +5,12 @@
 
     angular
         .module('app')
-        .controller('ExamDetailController', ['examService', '$stateParams', '$timeout', 'initialData','$mdToast',
+        .controller('ExamDetailController', ['examService', '$stateParams', '$timeout', 'initialData','$mdToast','$state',
             ExamDetailController
         ])
         .controller('huhuCtrl',[huhuCtrl]);
 
-    function ExamDetailController(examService,$stateParams,$timeout,initialData,$mdToast) {
+    function ExamDetailController(examService,$stateParams,$timeout,initialData,$mdToast,$state) {
         console.log("detail");
         var vm = this;
         vm.examId = $stateParams.id;
@@ -46,8 +46,7 @@
                 controllerAs : 'hu',
                 templateUrl: 'app/views/partials/toast-template.html'
             }).then(function () {
-                console.log("doneeeeeeeeeeeeeee");
-                console.log(vm.answerSheet);
+
                 vm.show = !vm.show;
                 var request = {
                     sheet : vm.answerSheet,
@@ -55,7 +54,9 @@
                 };
                 examService.postExamResult(request)
                     .then(function(response){
-                        console.log(response);
+                        var id = response.data.id;
+                        $state.go('home.answer',({ id: id}));
+                        
                     },function(err){
                         console.log(err);
                     });
@@ -76,7 +77,6 @@
                 vm.countArray.splice(0,1,vm.countArray[vm.sections.indexOf(section)+1]);
 
                 if (!vm.listCustom[0]){
-                    console.log("done");
                     $mdToast
                         .hide()
                         .then(function() {
@@ -97,8 +97,6 @@
                                     answer: question.selectedAnswer
                                 })
                             });
-                            console.log(vm.answerSheet);
-                            console.log("hide");
                             //hide and show another section
                             vm.listCustom.splice(0, 1, vm.sections[vm.index]);
                             if (!vm.listCustom[0]) {

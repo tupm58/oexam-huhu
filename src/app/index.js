@@ -49,7 +49,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
           title: 'Table'
         }
       })
-        .state('home.exam', {
+      .state('home.exam', {
           url: '/exam',
           controller: 'ExamController',
           controllerAs: 'vm',
@@ -58,23 +58,32 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
             title: 'Exam'
           }
         })
-        .state('home.examDetail', {
-            url: '/exam/:id',
-            controller: 'ExamDetailController',
-            controllerAs: 'vm',
-            templateUrl: 'app/views/examDetail.html',
-            data: {
-                title: 'Exam Detail'
-            },
-            resolve : {
-                initialData : ['examService','$stateParams',function(examService,$stateParams){
-                    return examService.getExamDetail($stateParams.id)
-                        .then(function(response){
-                            return response.data;
-                        });
-                }]
-            }
+      .state('home.examDetail', {
+          url: '/exam/:id',
+          controller: 'ExamDetailController',
+          controllerAs: 'vm',
+          templateUrl: 'app/views/examDetail.html',
+          data: {
+              title: 'Exam Detail'
+          },
+          resolve : {
+              initialData : ['examService','$stateParams',function(examService,$stateParams){
+                  return examService.getExamDetail($stateParams.id)
+                      .then(function(response){
+                          return response.data;
+                      });
+              }]
+          }
         })
+      .state('home.answer', {
+              url: '/answer/:id',
+              controller: 'AnswerController',
+              controllerAs: 'vm',
+              templateUrl: 'app/views/answer.html',
+              data: {
+                  title: 'Answer Detail'
+              }
+          })
     $urlRouterProvider.otherwise('/dashboard');
 
     $mdThemingProvider
