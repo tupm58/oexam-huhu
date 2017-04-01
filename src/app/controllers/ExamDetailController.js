@@ -7,7 +7,8 @@
         .module('app')
         .controller('ExamDetailController', ['examService', '$stateParams', '$timeout', 'initialData','$mdToast',
             ExamDetailController
-        ]);
+        ])
+        .controller('huhuCtrl',[huhuCtrl]);
 
     function ExamDetailController(examService,$stateParams,$timeout,initialData,$mdToast) {
         console.log("detail");
@@ -40,14 +41,12 @@
                 hideDelay: vm.timeTotal * 60 * 1000,
                 position: 'top right',
                 locals: {parm: vm.timeTotal},
-                // // controller: function ($scope, parm) {
-                // //     $scope.countDown = parm * 60;
-                // // },
-                controller: function (parm) {
-                    var hu = this;
-                    hu.countDown = parm * 60;
-                    console.log(hu.countDown);
-                },
+                // controller: function (parm) {
+                //     var hu = this;
+                //     hu.countDown = parm * 60;
+                //     console.log(hu.countDown);
+                // },
+                controller: 'huhuCtrl',
                 bindToController : true,
                 controllerAs : 'hu',
                 templateUrl: 'app/views/partials/toast-template.html'
@@ -66,6 +65,7 @@
                         console.log(err);
                     });
             });
+
             //next button to next section
             vm.nextSection = function (section) {
                 vm.listCustom[0].questions.forEach(function(question){
@@ -120,6 +120,11 @@
         }
     };
 
-    
+    function huhuCtrl(){
+        var hu = this;
+        hu.countDown = hu.parm * 60;
+        console.log(hu.parm);
+        console.log(hu.countDown);
+    }
 
 })();
