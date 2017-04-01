@@ -41,11 +41,6 @@
                 hideDelay: vm.timeTotal * 60 * 1000,
                 position: 'top right',
                 locals: {parm: vm.timeTotal},
-                // controller: function (parm) {
-                //     var hu = this;
-                //     hu.countDown = parm * 60;
-                //     console.log(hu.countDown);
-                // },
                 controller: 'huhuCtrl',
                 bindToController : true,
                 controllerAs : 'hu',
