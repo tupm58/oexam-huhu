@@ -10,13 +10,14 @@
             '$scope',
             '$stateParams',
             '$timeout',
+            '$mdToast',
             'initialData',
             ExamDetailController
 
 
         ]);
 
-    function ExamDetailController(examService, $scope, $stateParams, $timeout, initialData) {
+    function ExamDetailController(examService, $scope, $stateParams, $timeout,$mdToast,initialData) {
         console.log("detail");
         $scope.examId = $stateParams.id;
         var vm = this;
@@ -42,29 +43,29 @@
             vm.show = !vm.show;
 
             //show template time countdown
-            // $mdToast.show({
-            //     hideDelay: vm.timeTotal * 60 * 1000,
-            //     position: 'top right',
-            //     locals: {parm: vm.timeTotal},
-            //     controller: function ($scope, parm) {
-            //         $scope.countDown = parm * 60;
-            //     },
-            //     templateUrl: 'app/views/partials/toast-template.html'
-            // }).then(function () {
-            //     console.log("doneeeeeeeeeeeeeee");
-            //     console.log(vm.answerSheet);
-            //     vm.show = !vm.show;
-            //     var request = {
-            //         sheet : vm.answerSheet,
-            //         exam:  $stateParams.id
-            //     };
-            //     examService.postExamResult(request)
-            //         .then(function(response){
-            //             console.log(response);
-            //         },function(err){
-            //             console.log(err);
-            //         });
-            // });
+            $mdToast.show({
+                hideDelay: vm.timeTotal * 60 * 1000,
+                position: 'top right',
+                locals: {parm: vm.timeTotal},
+                controller: function ($scope, parm) {
+                    $scope.countDown = parm * 60;
+                },
+                templateUrl: 'app/views/partials/toast-template.html'
+            }).then(function () {
+                console.log("doneeeeeeeeeeeeeee");
+                console.log(vm.answerSheet);
+                vm.show = !vm.show;
+                var request = {
+                    sheet : vm.answerSheet,
+                    exam:  $stateParams.id
+                };
+                examService.postExamResult(request)
+                    .then(function(response){
+                        console.log(response);
+                    },function(err){
+                        console.log(err);
+                    });
+            });
             //next button to next section
             vm.nextSection = function (section) {
                 vm.listCustom[0].questions.forEach(function(question){
@@ -80,11 +81,11 @@
                 vm.countArray.splice(0,1,vm.countArray[vm.sections.indexOf(section)+1]);
 
                 if (!vm.listCustom[0]){
-                    // console.log("done");
-                    // $mdToast
-                    //     .hide()
-                    //     .then(function() {
-                    //     });
+                    console.log("done");
+                    $mdToast
+                        .hide()
+                        .then(function() {
+                        });
                 }
 
             };
