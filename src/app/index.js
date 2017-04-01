@@ -4,8 +4,10 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
   'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app' , 'md.data.table'])
 
   .config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider,
-                    $mdIconProvider) {
-    $stateProvider
+                    $mdIconProvider,$qProvider) {
+      $qProvider.errorOnUnhandledRejections(false);
+
+      $stateProvider
       .state('home', {
         url: '',
         templateUrl: 'app/views/main.html',

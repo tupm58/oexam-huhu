@@ -5,22 +5,15 @@
 
     angular
         .module('app')
-        .controller('ExamDetailController', [
-            'examService',
-            '$scope',
-            '$stateParams',
-            '$timeout',
-            '$mdToast',
-            'initialData',
+        .controller('ExamDetailController', ['examService', '$stateParams', '$timeout', 'initialData','$mdToast',
             ExamDetailController
-
-
         ]);
 
-    function ExamDetailController(examService, $scope, $stateParams, $timeout,$mdToast,initialData) {
+    function ExamDetailController(examService,$stateParams,$timeout,initialData,$mdToast) {
         console.log("detail");
-        $scope.examId = $stateParams.id;
         var vm = this;
+        vm.examId = $stateParams.id;
+
         vm.examData = initialData;
         vm.timeTotal = initialData.timeTotal;
         vm.show = true;
@@ -47,9 +40,16 @@
                 hideDelay: vm.timeTotal * 60 * 1000,
                 position: 'top right',
                 locals: {parm: vm.timeTotal},
-                controller: function ($scope, parm) {
-                    $scope.countDown = parm * 60;
+                // // controller: function ($scope, parm) {
+                // //     $scope.countDown = parm * 60;
+                // // },
+                controller: function (parm) {
+                    var hu = this;
+                    hu.countDown = parm * 60;
+                    console.log(hu.countDown);
                 },
+                bindToController : true,
+                controllerAs : 'hu',
                 templateUrl: 'app/views/partials/toast-template.html'
             }).then(function () {
                 console.log("doneeeeeeeeeeeeeee");
