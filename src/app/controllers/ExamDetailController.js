@@ -5,12 +5,12 @@
 
     angular
         .module('app')
-        .controller('ExamDetailController', ['examService', '$stateParams', '$timeout', 'initialData','$mdToast','$state',
+        .controller('ExamDetailController', ['examService', '$stateParams', '$timeout', 'initialData','$mdToast','$state','cfpLoadingBar',
             ExamDetailController
         ])
         .controller('huhuCtrl',[huhuCtrl]);
 
-    function ExamDetailController(examService,$stateParams,$timeout,initialData,$mdToast,$state) {
+    function ExamDetailController(examService,$stateParams,$timeout,initialData,$mdToast,$state,cfpLoadingBar) {
         console.log("detail");
         var vm = this;
         vm.examId = $stateParams.id;
@@ -51,8 +51,10 @@
                     sheet : vm.answerSheet,
                     exam:  $stateParams.id
                 };
+                cfpLoadingBar.start();
                 examService.postExamResult(request)
                     .then(function(response){
+                        cfpLoadingBar.complete();
                         var id = response.data.id;
                         $state.go('home.answer',({ id: id}));
                     },function(err){
