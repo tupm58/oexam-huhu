@@ -46,8 +46,7 @@
                 controllerAs : 'hu',
                 templateUrl: 'app/views/partials/toast-template.html'
             }).then(function () {
-
-                vm.show = !vm.show;
+                // vm.show = !vm.show;
                 var request = {
                     sheet : vm.answerSheet,
                     exam:  $stateParams.id
@@ -56,7 +55,6 @@
                     .then(function(response){
                         var id = response.data.id;
                         $state.go('home.answer',({ id: id}));
-                        
                     },function(err){
                         console.log(err);
                     });
