@@ -76,13 +76,30 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
           }
         })
       .state('home.answer', {
-              url: '/answer/:id',
-              controller: 'AnswerController',
+          url: '/answer/:id',
+          controller: 'AnswerController',
+          controllerAs: 'vm',
+          templateUrl: 'app/views/answer.html',
+          data: {
+              title: 'Answer Detail'
+          },
+          resolve : {
+              initialData : ['answerService','$stateParams',function(answerService,$stateParams){
+                  return  answerService.getAnswerDetail($stateParams.id)
+                      .then(function(response){
+                          return response.data;
+                      }).catch(function(err){
+                          return err ;
+                      })
+              }]
+          }
+          
+          })
+          .state('login', {
+              url: '/login',
+              controller: 'LoginController',
               controllerAs: 'vm',
-              templateUrl: 'app/views/answer.html',
-              data: {
-                  title: 'Answer Detail'
-              }
+              templateUrl: 'app/views/login.html'
           })
     $urlRouterProvider.otherwise('/dashboard');
 
