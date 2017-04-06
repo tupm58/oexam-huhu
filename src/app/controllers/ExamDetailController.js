@@ -5,14 +5,26 @@
 
     angular
         .module('app')
-        .controller('ExamDetailController', ['examService', '$stateParams', '$timeout', 'initialData','$mdToast','$state','cfpLoadingBar',
+        .controller('ExamDetailController', ['examService', '$stateParams', '$timeout', 'initialData','$mdToast','$state','cfpLoadingBar','$sce',
             ExamDetailController
         ])
+        .filter('trustUrl',['$sce',trustUrl])
         .controller('huhuCtrl',[huhuCtrl]);
+    function trustUrl($sce){
+        return function(url) {
+            return $sce.trustAsResourceUrl(url);
+        };
+    }
+    function ExamDetailController(examService,$stateParams,$timeout,initialData,$mdToast,$state,cfpLoadingBar,$sce) {
 
-    function ExamDetailController(examService,$stateParams,$timeout,initialData,$mdToast,$state,cfpLoadingBar) {
+
         console.log("detail");
         var vm = this;
+
+        vm.trustedUrl = function(url){
+            return $sce.trustAsResourceUrl(url);
+        };
+
         vm.examId = $stateParams.id;
 
         vm.examData = initialData;

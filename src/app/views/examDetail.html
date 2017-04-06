@@ -1,11 +1,10 @@
-
 <div layout-gt-md="row" ng-show="vm.show">
-    <section flex layout-margin class="md-whiteframe-z1 panel-widget"  class="fixed-height-widget">
+    <section flex layout-margin class="md-whiteframe-z1 panel-widget" class="fixed-height-widget">
 
-        <div >
-            <md-toolbar md-theme="custom" class="md-hue-1 panel-widget-toolbar" >
+        <div>
+            <md-toolbar md-theme="custom" class="md-hue-1 panel-widget-toolbar">
                 <div class="md-toolbar-tools" layout-align="center center">
-                    <h3 class="panel-widget-tittle" ><b>{{vm.examData.exam.name}}</b></h3>
+                    <h3 class="panel-widget-tittle"><b>{{vm.examData.exam.name}}</b></h3>
                 </div>
             </md-toolbar>
             <md-content class="md-padding">
@@ -23,38 +22,53 @@
     </section>
 </div>
 
-<div ng-show="!vm.show" >
+<div ng-show="!vm.show">
     <div data-ng-repeat="section in vm.listCustom">
-        <md-subheader class="md-warn" >
-        <timer countdown="section.timeInMinute * 60 " max-time-unit="'minute'" interval="1000">{{mminutes}} minute{{minutesS}}, {{sseconds}} second{{secondsS}}</timer>
+        <md-subheader class="md-warn">
+            <timer countdown="section.timeInMinute * 60 " max-time-unit="'minute'" interval="1000">{{mminutes}}
+                minute{{minutesS}}, {{sseconds}} second{{secondsS}}
+            </timer>
         </md-subheader>
-        <section flex layout-margin class="md-whiteframe-z1 panel-widget"  class="fixed-height-widget" class="md-padding">
-           <div>
-               <md-toolbar md-theme="custom" class="md-hue-1 panel-widget-toolbar" >
-                   <div class="md-toolbar-tools" layout-align="center center">
-                       <h3 class="panel-widget-tittle" ><b>{{section.name}}</b></h3>
-                   </div>
-               </md-toolbar>
+        <section flex layout-margin class="md-whiteframe-z1 panel-widget" class="fixed-height-widget"
+                 class="md-padding">
+            <div>
+                <md-toolbar md-theme="custom" class="md-hue-1 panel-widget-toolbar">
+                    <div class="md-toolbar-tools" layout-align="center center">
+                        <h3 class="panel-widget-tittle"><b>{{section.name}}</b></h3>
+                    </div>
+                </md-toolbar>
 
-               <md-content class="md-padding" ng-repeat="question in section.questions">
-                   <div layout="column">
-                       {{question.name}}
-                   </div>
-                   <br>
-                   <md-radio-group ng-model="question.selectedAnswer">
-                       <md-radio-button ng-repeat="answer in question.answers"
-                                        ng-value="answer.content" >
-                           {{answer.content}}
-                       </md-radio-button>
-                   </md-radio-group>
-               </md-content>
+                <md-content class="md-padding" ng-repeat="question in section.questions">
+                    <div layout="column">
+                        <b>{{question.name}}</b>
+                    </div>
+                    <div ng-if="question.img">
+                        <img ng-src="http://localhost:8000{{question.img}}" alt="">
+                    </div>
+                    <br>
+                    <div ng-if="question.audio">
+                        <audio src="{{ 'http://localhost:8000'  + question.audio | trustUrl}}" type="audio/mp3"
+                               controls></audio>
+                    </div>
+                    <br>
 
-               <md-content class="md-padding">
-                   <div layout="row" layout-align="center center">
-                       <md-button class="md-raised md-warn" ng-click="vm.nextSection(section)">NEXT SECTION</md-button>
-                   </div>
-               </md-content>
-           </div>
+                    <md-radio-group ng-model="question.selectedAnswer">
+                        <md-radio-button ng-repeat="answer in question.answers"
+                                         ng-value="answer.content">
+                            {{answer.content}}
+                        </md-radio-button>
+                    </md-radio-group>
+                    <br>
+
+                    <md-divider></md-divider>
+                </md-content>
+
+                <md-content class="md-padding">
+                    <div layout="row" layout-align="center center">
+                        <md-button class="md-raised md-warn" ng-click="vm.nextSection(section)">NEXT SECTION</md-button>
+                    </div>
+                </md-content>
+            </div>
 
         </section>
     </div>
