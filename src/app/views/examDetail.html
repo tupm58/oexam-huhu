@@ -51,13 +51,23 @@
                                controls></audio>
                     </div>
                     <br>
-
-                    <md-radio-group ng-model="question.selectedAnswer">
+                    <md-radio-group ng-model="question.selectedAnswer" ng-if="question.category != 'fill' ">
                         <md-radio-button ng-repeat="answer in question.answers"
                                          ng-value="answer.content">
                             {{answer.content}}
                         </md-radio-button>
                     </md-radio-group>
+
+                    <!--<md-input-container class="md-block" flex-gt-sm  >-->
+                        <!--<label>Your answer</label>-->
+                        <!--<input ng-model="question.selectedAnswer">-->
+                    <!--</md-input-container>-->
+                    <md-content layout-gt-sm="row" ng-if="question.category == 'fill' ">
+                            <md-input-container>
+                                <label>Your answer</label>
+                                <input ng-model="question.selectedAnswer">
+                            </md-input-container>
+                    </md-content>
                     <br>
 
                     <md-divider></md-divider>

@@ -3,5 +3,5 @@
  */
 var config = {
     // basicUrl:  'https://damp-brushlands-61241.herokuapp.com/api/'
-    basicUrl : 'http://localhost:8000/api/'
+    basicUrl : 'http://localhost:8000'
 };

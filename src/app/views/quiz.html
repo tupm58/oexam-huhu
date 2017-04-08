@@ -1,0 +1,15 @@
+<md-list-item class="md-3-line" ng-repeat="item in vm.quizList" ng-click="null">
+    <div class="md-list-item-text" layout="column" >
+        <div layout="row">
+            <div flex="80">
+                <h3>{{ item.name }}</h3>
+                <h4>{{ item.created_at }}</h4>
+            </div>
+
+            <md-button class="md-raised md-warn" flex="20" ui-sref="home.quizDetail({ id: item._id})">
+                PLAY
+            </md-button>
+        </div>
+
+    </div>
+</md-list-item>

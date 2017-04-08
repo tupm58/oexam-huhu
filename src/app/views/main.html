@@ -54,10 +54,10 @@
             class="md-whiteframe-z2 md-sidenav-right">
     <md-toolbar>
         <md-toolbar class="md-warn" layout="row" layout-align="center center">
-            <img class="img-circle" ng-src="assets/images/feynman.jpg">
+            <img class="img-circle" ng-src="http://localhost:8000{{vm.img}}">
             <md-menu md-offset="0 20">
                 <md-button class="capitalize" ng-click="$mdOpenMenu()" aria-label="Open menu">
-                    <span>Richard Feynman</span>
+                    <span>{{vm.username}}</span>
                     <i class="material-icons">keyboard_arrow_down</i>
                 </md-button>
                 <md-menu-content width="3">

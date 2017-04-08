@@ -17,7 +17,10 @@
     vm.title = $state.current.data.title;
     vm.showSimpleToast = showSimpleToast;
     vm.toggleRightSidebar = toggleRightSidebar;
-
+    
+    //user info
+      vm.username = localStorage.getItem('username');
+      vm.img = localStorage.getItem('avatar');
     navService
       .loadAllItems()
       .then(function(menuItems) {

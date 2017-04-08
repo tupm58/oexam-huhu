@@ -19,21 +19,21 @@
 
         function getListExams() {
             return $http({
-                url: config.basicUrl + 'exam',
+                url: config.basicUrl + '/api/exam',
                 method: 'GET'
             })
         }
 
         function getExamDetail(id){
             return $http({
-                url: config.basicUrl + 'exam/' + id,
+                url: config.basicUrl + '/api/exam/' + id,
                 method: 'GET'
             })
         }
         
         function postExamResult(opts) {
             return $http({
-                url: config.basicUrl + 'answerSheet',
+                url: config.basicUrl + '/answerSheet',
                 method: 'POST',
                 data: opts
             })
