@@ -1,0 +1,15 @@
+host
+
+<h1>
+    PIN : <b>{{vm.gameId}}</b>
+</h1>
+
+<div ng-if="vm.gameState == 'waitingRoom' ">
+    <div ng-repeat="user in vm.listUserInGame">
+        {{user.username}}
+    </div>
+</div>
+
+<div>
+    <md-button ng-click="vm.startGame()">START GAME!!</md-button>
+</div>

@@ -127,6 +127,33 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
                 controllerAs: 'vm',
                 templateUrl: 'app/views/login.html'
             })
+            .state('home.host', {
+                url: '/quiz/:id/host/:pin',
+                controller: 'HostController',
+                controllerAs: 'vm',
+                templateUrl: 'app/views/host.html',
+                data: {
+                    title: 'Host'
+                }
+            })
+            .state('home.player', {
+                url: '/player',
+                controllerAs: 'vm',
+                templateUrl: 'app/views/player-main.html',
+                data: {
+                    title: 'Player'
+                }
+            })
+            .state('home.playerDetail', {
+                url: '/player/:pin',
+                controller: 'PlayerController',
+                controllerAs: 'vm',
+                templateUrl: 'app/views/player.html',
+                data: {
+                    title: 'Player Detail'
+                }
+            })
+
         $urlRouterProvider.otherwise('/dashboard');
 
         $mdThemingProvider

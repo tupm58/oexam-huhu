@@ -6,16 +6,20 @@
     angular
         .module('app')
         .controller('QuizDetailController', [
-            'quizService','$stateParams','initialData','Socket',
+            'quizService','$state','$stateParams','initialData',
             QuizDetailController
         ]);
 
-    function QuizDetailController(quizService,$stateParams,initialData,Socket) {
+    function QuizDetailController(quizService,$state,$stateParams,initialData) {
         var vm = this;
 
         vm.quizData = initialData;
-
-        Socket.connect();
+        var quizId = $stateParams.id; 
+        vm.createNewRoom = function(){
+            var gameId = (Math.random()*100000) | 0;
+            $state.go('home.host',({id: quizId ,pin : gameId}));
+           
+        }
     }
 
 })();

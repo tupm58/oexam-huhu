@@ -24,6 +24,7 @@
                     localStorage.setItem('username',res.data.profile.local.username);
                     localStorage.setItem('email',res.data.profile.local.email);
                     localStorage.setItem('avatar',res.data.profile.local.img);
+                    localStorage.setItem('userId',res.data.profile._id);
 
                     $state.go('home.dashboard');
                 }).catch(function(err){
