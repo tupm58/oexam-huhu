@@ -4,12 +4,35 @@ host
     PIN : <b>{{vm.gameId}}</b>
 </h1>
 
+<div>
+    <md-button ng-click="vm.startGame()">START GAME!!</md-button>
+</div>
+
 <div ng-if="vm.gameState == 'waitingRoom' ">
     <div ng-repeat="user in vm.listUserInGame">
         {{user.username}}
     </div>
 </div>
 
-<div>
-    <md-button ng-click="vm.startGame()">START GAME!!</md-button>
+<div ng-if="vm.gameState == 'question'">
+    <!--count down-->
+    <div>{{vm.countdown}}</div>
+    <!--question-->
+    <b>{{vm.currentQuestion.name}}</b>
+    <!--4 answer-->
+    <md-button ng-repeat="answer in vm.currentQuestion.answers">
+        {{answer.content}}
+    </md-button>
+
+    <!--time up ! -> change state -->
+
 </div>
+
+<div ng-if="vm.gameState == 'postQuestion'">
+    <!--correct answer is -->
+    <!--correct by list user-->
+    <!--next question-->
+    <md-button ng-click="vm.nextQuestion(vm.currentQuestion)">NEXT</md-button>
+    <md-button ng-click="vm.endGame()">END GAME</md-button>
+</div>
+

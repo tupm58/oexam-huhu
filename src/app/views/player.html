@@ -3,3 +3,29 @@ player detail
 <div ng-if="vm.gameState == 'waitingRoom' ">
     <b>{{vm.playJoinGameMessage}}</b>
 </div>
+
+<div ng-if="vm.gameState == 'question'">
+
+    <!--count down-->
+    <div>{{vm.countdown}}</div>
+
+    <!--question-->
+    <b>{{vm.currentQuestion.name}}</b>
+    <!--4 answer-->
+    <div ng-repeat="answer in vm.currentQuestion.answers">
+        <md-button class="md-raised md-warn" ng-click="vm.saveAnswer(answer)">
+            {{answer.content}}
+        </md-button>
+
+    </div>
+</div>
+
+<div ng-if="vm.gameState == 'loadingAnswer' ">
+    loading after click answer
+</div>
+
+
+<div ng-if="vm.gameState == 'postQuestion' ">
+    leader board or your position
+</div>
+
