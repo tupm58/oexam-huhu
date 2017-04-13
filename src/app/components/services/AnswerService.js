@@ -14,7 +14,7 @@
 
         function getAnswerDetail(id) {
             return $http({
-                url: config.basicUrl + 'answerSheet/' + id,
+                url: config.basicUrl + '/api/answerSheet/' + id,
                 method: 'GET'
             })
         }

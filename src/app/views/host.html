@@ -30,9 +30,22 @@ host
 
 <div ng-if="vm.gameState == 'postQuestion'">
     <!--correct answer is -->
+    Câu trả lời đúng là:
+    <div>
+        {{vm.correctAnswer[0].content}}
+    </div>
     <!--correct by list user-->
+    số người trả lời đúng là :
+    {{vm.listUserAnswer.length}}
+    <md-button ng-click="vm.showLeaderBoard()">See leaderboard</md-button>
+
+</div>
+
+<div ng-if="vm.gameState == 'leaderBoard' ">
+    <!--show leader board-->
+    LEADER BOARD
+
     <!--next question-->
     <md-button ng-click="vm.nextQuestion(vm.currentQuestion)">NEXT</md-button>
     <md-button ng-click="vm.endGame()">END GAME</md-button>
 </div>
-

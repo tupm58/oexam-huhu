@@ -36,15 +36,13 @@
                 console.log(err);
             });
         }
-
-
-
         Socket.connect();
 
         //Phát sự kiện tạo game
         Socket.emit('newGameCreated', {
             gameId: vm.gameId,
-            quizId: quizId
+            quizId: quizId,
+            host: localStorage.getItem('userId')
         });
         //Thông báo user đã vào
         Socket.on('playerJoinGame',function(data){
@@ -61,9 +59,10 @@
         //leave
 
         vm.startGame = function(){
+            vm.listUserAnswer = [];
             vm.gameState = 'question';
             vm.currentQuestion  = listQuestion[0];
-            vm.countdown = 5;
+            vm.countdown = config.countHost;
             Socket.emit('showQuestion',{
                 question : vm.currentQuestion,
                 gameId : vm.gameId
@@ -73,35 +72,30 @@
             },1000, vm.countdown)
                 .then(function() {
                     vm.gameState = 'postQuestion';
-                    Socket.emit('showCorrectAnswer',{
-                        gameId : vm.gameId,
-                        correctAnswer : "aaaaaaaaaaaaaaaaaaaaaaa"
-                    })
                     vm.correctAnswer = vm.currentQuestion.answers.filter(function(answer){
                         return answer.correct == true;
                     });
-                    console.log(vm.correctAnswer);
                 });
         };
-
+        vm.showLeaderBoard = function(){
+            vm.gameState = 'leaderBoard';
+            // call to show leader board ? call from db?
+        };
         vm.nextQuestion = function(currentQuestion){
+            vm.listUserAnswer = [];
             vm.gameState = 'question';
             var index = listQuestion.indexOf(currentQuestion);
             index ++;
             vm.currentQuestion = listQuestion[index];
-            vm.countdown = 5;
+            vm.countdown = config.countHost;
             $interval(function() {
                 vm.countdown--;
             },1000, vm.countdown)
                 .then(function() {
                     vm.gameState = 'postQuestion';
-                    Socket.emit('showLeaderBoard',{
-                        gameId : vm.gameId
-                    });
                     vm.correctAnswer = vm.currentQuestion.answers.filter(function(answer){
                             return answer.correct == true;
                     });
-                    console.log(vm.correctAnswer);
                 });
             Socket.emit('showQuestion',{
                 question : vm.currentQuestion,
@@ -109,7 +103,11 @@
             });
 
         };
-        
+        Socket.on('receiveAnswer',function(data){
+            vm.listUserAnswer.push(data);
+        });
+
+
     }
 
 })();

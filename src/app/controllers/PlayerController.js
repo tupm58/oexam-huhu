@@ -19,6 +19,7 @@
         vm.gameState = '';
         init();
         function init(){
+            //if pin valid
             Socket.connect();
             //Phát sự kiện user vào game
             Socket.emit('playerJoinGame',{
@@ -39,13 +40,12 @@
 
         //see question
         Socket.on('showQuestion',function(data){
-            console.log(data);
             vm.gameState = 'question';
             vm.currentQuestion = data.question;
-            vm.countdown = 5;
+            vm.countdown = config.countPlayer;
             $interval(function() {
                 vm.countdown--;
-            },1000, vm.countdown)
+            },100, vm.countdown)
                 .then(function() {
                     vm.gameState = 'postQuestion';
 
@@ -55,14 +55,23 @@
         });
         //answer question
         vm.saveAnswer = function (answer){
-            console.log(answer);
+            console.log(vm.countdown);
             vm.gameState = 'loadingAnswer';
-            // Socket.emit('sendAnswer',{
-            //     answer: answer,
-            //     gameId: vm.gameId,
-            //    
-            // });
-
+            var score = 0;
+            if (answer.correct == true){
+                console.log("true answer");
+                score = 10;
+                Socket.emit('sendAnswer',{
+                    gameId: vm.gameId,
+                    score: score * vm.countdown,
+                    userId:  localStorage.getItem('userId'),
+                    username:  localStorage.getItem('username'),
+                    time: Date.now(),
+                    correct : answer.correct
+                });
+            }
+           
+          
         }
 
     }

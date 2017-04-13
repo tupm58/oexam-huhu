@@ -33,7 +33,7 @@
         
         function postExamResult(opts) {
             return $http({
-                url: config.basicUrl + '/answerSheet',
+                url: config.basicUrl + '/api/answerSheet',
                 method: 'POST',
                 data: opts
             })

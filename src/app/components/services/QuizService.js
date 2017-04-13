@@ -13,7 +13,8 @@
     function quizService($q,$http){
         return {
             getListQuiz: getListQuiz,
-            getQuizDetail: getQuizDetail
+            getQuizDetail: getQuizDetail,
+            checkPinValid:checkPinValid
         };
 
         function getListQuiz() {
@@ -25,6 +26,12 @@
         function getQuizDetail(id){
             return $http({
                 url: config.basicUrl + '/api/quiz/' + id,
+                method: 'GET'
+            })
+        }
+        function checkPinValid(id){
+            return $http({
+                url: config.basicUrl + '/api/game/checkPin/' + id,
                 method: 'GET'
             })
         }

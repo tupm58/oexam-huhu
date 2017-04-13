@@ -149,6 +149,17 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
                 controller: 'PlayerController',
                 controllerAs: 'vm',
                 templateUrl: 'app/views/player.html',
+                resolve: {
+                    initialData: ['quizService', '$stateParams','$state', function (quizService, $stateParams,$state) {
+                        return quizService.checkPinValid($stateParams.pin)
+                            .then(function (response) {
+                                console.log("pin ok");
+                            }).catch(function (err) {
+                                console.log("pin sai");
+                                $state.go('home.player');
+                            })
+                    }]
+                },
                 data: {
                     title: 'Player Detail'
                 }
