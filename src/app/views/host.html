@@ -1,30 +1,66 @@
-host
-
-<h1>
-    PIN : <b>{{vm.gameId}}</b>
-</h1>
-
-<div>
-    <md-button ng-click="vm.startGame()">START GAME!!</md-button>
-</div>
 
 <div ng-if="vm.gameState == 'waitingRoom' ">
-    <div ng-repeat="user in vm.listUserInGame">
-        {{user.username}}
+    <div layout-align="center center" layout="column">
+        <h1>
+            PIN : <b>{{vm.gameId}}</b>
+        </h1>
+        <md-button  layout-align="center center"
+                    flex class="capitalize md-raised md-warn"
+                    ng-click="vm.startGame()">
+            <div class="md-tile-content">
+                <i class="material-icons md-48">play_circle_outline</i>
+            </div>
+            <div class="md-tile-content">
+                START
+            </div>
+        </md-button>
     </div>
+
+
+    <md-list layout-gt-md="row" layout-wrap>
+        <md-list-item flex="30" class="md-3-line" ng-repeat="user in vm.listUserInGame" ng-click="null">
+            <img ng-src="http://localhost:8000{{user.avatar}}" class="md-avatar"/>
+            <div class="md-list-item-text" layout="column">
+                <h3><b>{{ user.username }}</b></h3>
+            </div>
+        </md-list-item>
+    </md-list>
 </div>
 
 <div ng-if="vm.gameState == 'question'">
     <!--count down-->
-    <div>{{vm.countdown}}</div>
-    <!--question-->
-    <b>{{vm.currentQuestion.name}}</b>
-    <!--4 answer-->
-    <md-button ng-repeat="answer in vm.currentQuestion.answers">
-        {{answer.content}}
-    </md-button>
+    <div layout="row">
+        <div style="font-size: 120px" flex="10">{{vm.countdown}}</div>
 
-    <!--time up ! -> change state -->
+        <section flex layout-margin class="md-whiteframe-z1 panel-widget" class="fixed-height-widget"
+                 class="md-padding">
+            <div>
+                <md-toolbar md-theme="custom" class="md-hue-1 panel-widget-toolbar">
+                    <div class="md-toolbar-tools" layout-align="center center">
+                        <h3 class="panel-widget-tittle"><b>{{vm.currentQuestion.name}}</b></h3>
+                    </div>
+                </md-toolbar>
+                <md-content class="md-padding" >
+                    <div ng-if="vm.currentQuestion.img">
+                        <img ng-src="http://localhost:8000{{vm.currentQuestion.img}}" alt="">
+                    </div>
+                    <br>
+                    <div ng-if="vm.currentQuestion.audio">
+                        <audio src="{{ 'http://localhost:8000'  + vm.currentQuestion.audio | trustUrl}}" type="audio/mp3"
+                               controls></audio>
+                    </div>
+                    <br>
+                    <div layout-gt-md="row" layout-wrap>
+                        <md-button ng-repeat="answer in vm.currentQuestion.answers" flex="40" class="md-raised md-warn">
+                            {{answer.content}}
+                        </md-button>
+
+                    </div>
+
+                </md-content>
+            </div>
+        </section>
+    </div>
 
 </div>
 

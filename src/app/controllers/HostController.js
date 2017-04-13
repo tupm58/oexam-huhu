@@ -53,7 +53,8 @@
         Socket.on('connectToRoom',function(data){
             console.log(data);
             vm.listUserInGame.push({
-                username: data.username
+                username: data.username,
+                avatar : data.avatar
             })
         });
         //leave
@@ -80,6 +81,12 @@
         vm.showLeaderBoard = function(){
             vm.gameState = 'leaderBoard';
             // call to show leader board ? call from db?
+            quizService.showLeaderBoard(vm.gameId)
+                .then(function(res){
+                    console.log(res);
+                }).catch(function(err){
+                    console.log(err);
+            })
         };
         vm.nextQuestion = function(currentQuestion){
             vm.listUserAnswer = [];

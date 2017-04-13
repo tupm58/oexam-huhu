@@ -14,7 +14,8 @@
         return {
             getListQuiz: getListQuiz,
             getQuizDetail: getQuizDetail,
-            checkPinValid:checkPinValid
+            checkPinValid:checkPinValid,
+            showLeaderBoard:showLeaderBoard
         };
 
         function getListQuiz() {
@@ -32,6 +33,12 @@
         function checkPinValid(id){
             return $http({
                 url: config.basicUrl + '/api/game/checkPin/' + id,
+                method: 'GET'
+            })
+        }
+        function showLeaderBoard(id){
+            return $http({
+                url: config.basicUrl + '/api/game/leaderboard/' + id,
                 method: 'GET'
             })
         }
