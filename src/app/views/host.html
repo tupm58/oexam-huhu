@@ -1,5 +1,5 @@
 
-<div ng-if="vm.gameState == 'waitingRoom' ">
+<div ng-if="vm.gameState == 'waitingRoom'"   md-colors="{background: '#E57373'}">
     <div layout-align="center center" layout="column">
         <h1>
             PIN : <b>{{vm.gameId}}</b>
@@ -25,9 +25,10 @@
             </div>
         </md-list-item>
     </md-list>
+
 </div>
 
-<div ng-if="vm.gameState == 'question'">
+<div ng-if="vm.gameState == 'question'" >
     <!--count down-->
     <div layout="row">
         <div style="font-size: 120px" flex="10">{{vm.countdown}}</div>
