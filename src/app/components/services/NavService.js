@@ -36,8 +36,18 @@
             },
             {
                 name: 'Quiz',
-                icon: 'view_module',
+                icon: 'fingerprint',
                 sref: '.quiz'
+            },
+            {
+                name: 'My Result',
+                icon: 'view_module',
+                sref: '.myResult'
+            },
+            {
+                name: 'Student',
+                icon: 'assessment',
+                sref: '.studentResult'
             }
         ];
 

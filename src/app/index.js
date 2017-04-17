@@ -164,6 +164,33 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
                     title: 'Player Detail'
                 }
             })
+            .state('home.myResult', {
+                url: '/result',
+                controller: 'ResultController',
+                controllerAs: 'vm',
+                templateUrl: 'app/views/myResult.html',
+                data: {
+                    title: 'My Result'
+                }
+            })
+            .state('home.studentResult', {
+                url: '/student-result',
+                controller: 'ExamController',
+                controllerAs: 'vm',
+                templateUrl: 'app/views/myExam.html',
+                data: {
+                    title: 'My Exam'
+                }
+            })
+            .state('home.studentResultDetail', {
+                url: '/student-result/:examId',
+                controller: 'ResultController',
+                controllerAs: 'vm',
+                templateUrl: 'app/views/studentResult.html',
+                data: {
+                    title: 'Student Result'
+                }
+            });
 
         $urlRouterProvider.otherwise('/dashboard');
 

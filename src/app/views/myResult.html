@@ -1,0 +1,32 @@
+<div class="table-responsive-vertical md-whiteframe-z1">
+    <table id="table" class="table table-hover table-bordered">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Exam</th>
+            <th>Date</th>
+            <th>Mark</th>
+            <th>Percent (%) </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="result in vm.myResultList track by $index" >
+            <td data-title="ID">{{$index + 1}}</td>
+            <td data-title="Exam">{{result.exam.name}}</td>
+            <td data-title="Date">{{result.created_at | date:'medium'}}</td>
+            <td data-title="Mark">{{result.mark}}</td>
+            <td data-title="Progress">
+                {{result.markByPercent}}
+                <md-progress-linear ng-if="result.markByPercent <=50" class="table-progress md-warn"
+                                    md-mode="determinate"
+                                    value={{result.markByPercent}}>
+                </md-progress-linear>
+                <md-progress-linear ng-if="result.markByPercent > 50" class="table-progress md-accent"
+                                    md-mode="determinate"
+                                    value={{result.markByPercent}}>
+                </md-progress-linear>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

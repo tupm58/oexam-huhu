@@ -7,12 +7,27 @@
         .module('app')
         .controller('ExamController', [
             'examService',
-            '$scope',
+            '$scope','$mdExpansionPanelGroup',
             ExamController
 
         ]);
 
-    function ExamController(examService , $scope) {
+    function ExamController(examService , $scope,$mdExpansionPanelGroup) {
+        // $mdExpansionPanelGroup().waitFor('panelGroup').then(function (instance) {
+        //     instance.register('panelOne', {
+        //         templateUrl: 'templateOne.html',
+        //         controller: 'TemplateOneController',
+        //         controllerAs: 'vm'
+        //     });
+        //
+        //     instance.register('panelTwo', {
+        //         templateUrl: 'templateTwo.html',
+        //         controller: 'TemplateTwoController',
+        //         controllerAs: 'vm'
+        //     });
+        // });
+
+
         var vm = this;
 
         vm.tableData = [];
@@ -29,7 +44,7 @@
 
         $scope.render = function (T) {
             return T;
-        }
+        };
         var lastQuery = null;
         vm.getItems = function () {
             var query = JSON.stringify($scope.query);
@@ -37,7 +52,7 @@
             lastQuery = query;
             GetItemsData($scope.query);
 
-        }
+        };
 
         function GetItemsData(query) {
             examService
@@ -52,6 +67,21 @@
 
         }
         GetItemsData($scope.query);
-    }
+
+
+        //my exam
+        vm.myExam = [];
+        examService.listExamByMe()
+            .then(function(tableData) {
+                console.log(tableData.data);
+                vm.myExam =  tableData.data;
+                // // Represents the count of database count of records, not items array!
+                // vm.totalItems = tableData.count;
+
+            });
+        }
+
+    
+
 
 })();

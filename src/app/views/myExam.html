@@ -1,0 +1,87 @@
+<!--&lt;!&ndash; TODO: Replace table to table component when https://github.com/angular/material/issues/796 will closed &ndash;&gt;-->
+<!--<div class="table-responsive-vertical md-whiteframe-z1">-->
+    <!--<table id="table" class="table table-hover table-bordered">-->
+        <!--<thead>-->
+        <!--<tr>-->
+            <!--<th>#</th>-->
+            <!--<th>Exam Name</th>-->
+            <!--<th>Created at</th>-->
+            <!--<th>Description</th>-->
+            <!--<th>View</th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+        <!--<tr ng-repeat="data in vm.myExam track by $index">-->
+            <!--<td data-title="ID">{{$index + 1}}</td>-->
+            <!--<td data-title="Issue">{{data.name}}</td>-->
+            <!--<td data-title="Status">{{data.created_at | date:'medium'}}  </td>-->
+            <!--<td data-title="Status">{{data.description | limitTo: 30}}...</td>-->
+
+            <!--<td data-title="Progress">-->
+                <!--<md-button class="md-icon-button md-warn" ui-sref="home.studentResultDetail({ examId: data._id})">-->
+                    <!--<md-icon >launch</md-icon>-->
+
+                <!--</md-button>-->
+            <!--</td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+    <!--</table>-->
+<!--</div>-->
+
+<md-expansion-panel-group md-component-id="panelGroup" multiple>
+    <md-expansion-panel md-component-id="panelOne" ng-repeat="data in vm.myExam">
+        <md-expansion-panel-collapsed>
+            <div class="md-title">{{data.name}}</div>
+            <div class="md-summary">{{data.description}}</div>
+            <div class="md-title">
+                <md-button  ui-sref="home.studentResultDetail({ examId: data._id})">
+                    View
+                </md-button></div>
+            <md-expansion-panel-icon></md-expansion-panel-icon>
+        </md-expansion-panel-collapsed>
+        <md-expansion-panel-expanded>
+            <md-expansion-panel-header>
+                <div class="md-title">{{data.name}}</div>
+                <div class="md-summary">{{data.description}}</div>
+                <div class="md-title">
+                    <md-button class="md-icon-button md-warn"
+                               ui-sref="home.studentResultDetail({ examId: data._id})">
+                    <md-icon >launch</md-icon>
+
+                    </md-button>
+                </div>
+
+            </md-expansion-panel-header>
+            <md-expansion-panel-content>
+                <md-card>
+                    <md-card-header>
+                        <md-card-header-text>
+                            <span class="md-title">{{vm.answer.exam}}</span>
+                            <span class="md-subhead">{{vm.answer.created_at}}</span>
+                        </md-card-header-text>
+                    </md-card-header>
+                    <md-content layout="row" layout-align="center center">
+                        <nvd3 options="vm.chartOptions" data="vm.memoryChartData"></nvd3>
+                    </md-content>
+                </md-card>
+            </md-expansion-panel-content>
+            <md-expansion-panel-footer>
+                <div flex></div>
+                <md-button class="md-warn" ng-click="$panel.collapse()">Close</md-button>
+            </md-expansion-panel-footer>
+        </md-expansion-panel-expanded>
+    </md-expansion-panel>
+
+    <!--<md-expansion-panel md-component-id="panelTwo">-->
+        <!--<md-expansion-panel-collapsed></md-expansion-panel-collapsed>-->
+        <!--<md-expansion-panel-expanded>-->
+            <!--<md-expansion-panel-header></md-expansion-panel-header>-->
+            <!--<md-expansion-panel-content></md-expansion-panel-content>-->
+            <!--<md-expansion-panel-footer>-->
+                <!--<md-button class="md-warn" ng-click="$panel.collapse()">Collapse</md-button>-->
+
+
+            <!--</md-expansion-panel-footer>-->
+        <!--</md-expansion-panel-expanded>-->
+    <!--</md-expansion-panel>-->
+</md-expansion-panel-group>

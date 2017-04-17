@@ -14,7 +14,8 @@
         return {
             getListExams: getListExams,
             getExamDetail: getExamDetail,
-            postExamResult : postExamResult
+            postExamResult : postExamResult,
+            listExamByMe: listExamByMe
         };
 
         function getListExams() {
@@ -36,6 +37,13 @@
                 url: config.basicUrl + '/api/answerSheet',
                 method: 'POST',
                 data: opts
+            })
+        }
+
+        function listExamByMe(){
+            return $http({
+                url: config.basicUrl + '/api/exam/me',
+                method: 'GET'
             })
         }
     }
