@@ -6,11 +6,11 @@
     angular
         .module('app')
         .controller('ResultController', [
-            'resultService','$stateParams',
+            'resultService','$stateParams','$window',
             ResultController
         ]);
 
-    function ResultController(resultService,$stateParams) {
+    function ResultController(resultService,$stateParams,$window) {
         var vm = this;
         var examId = $stateParams.examId; 
         //my own result 
@@ -38,7 +38,8 @@
             resultService
                 .exportCsv(examId)
                 .then(function(result) {
-                    console.log(result);
+                    vm.file = config.basicUrl + result.data.path;
+                    $window.location.href = config.basicUrl + '/api/download/'+examId+ '.csv';
                 }).catch(function(err) {
                 console.log(err);
             });       
