@@ -21,7 +21,7 @@
             .then(function(result) {
                 vm.myResultList = result.data;
             }).catch(function(err){
-            console.log(err);
+                console.log(err);
         });
         
         //my student result 
@@ -29,6 +29,7 @@
         resultService
             .getListResultByExam(examId)
             .then(function(result) {
+                console.log(result.data);
                 vm.studentResult = result.data.result;
             }).catch(function(err) {
             console.log(err);
@@ -41,15 +42,11 @@
                     vm.file = config.basicUrl + result.data.path;
                     $window.location.href = config.basicUrl + '/api/download/'+examId+ '.csv';
                 }).catch(function(err) {
-                console.log(err);
+                    console.log(err);
             });       
         };
 
-        vm.query = {
-            order: 'name',
-            limit: 10,
-            page: 1
-        };
+        
     }
 
 })();

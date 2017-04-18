@@ -25,11 +25,15 @@
             <tr md-row md-select="item" md-select-id="name" md-auto-select ng-repeat="item in vm.studentResult | orderBy:myOrder">
                 <td md-cell>{{item.user.local.username}}</td>
                 <td md-cell>{{item.mark}}</td>
-                <td md-cell ng-if="item.markByPercent > 40">Pass</td>
-                <td md-cell ng-if="item.markByPercent <= 40">Fail</td>
+                <td md-cell ng-if="item.markByPercent > 50">Pass</td>
+                <td md-cell ng-if="item.markByPercent <= 50">Fail</td>
 
                 <td md-cell>
-                    <md-progress-linear class="table-progress  md-warn"
+                    <md-progress-linear  ng-if="item.markByPercent > 50"class="table-progress  md-primary"
+                                        md-mode="determinate"
+                                        value={{item.markByPercent}}>
+                    </md-progress-linear>
+                    <md-progress-linear   ng-if="item.markByPercent <= 50"class="table-progress  md-warn"
                                         md-mode="determinate"
                                         value={{item.markByPercent}}>
                     </md-progress-linear>

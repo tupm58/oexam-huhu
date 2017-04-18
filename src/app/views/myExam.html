@@ -29,7 +29,7 @@
 <!--</div>-->
 
 <md-expansion-panel-group md-component-id="panelGroup" multiple>
-    <md-expansion-panel md-component-id="panelOne" ng-repeat="data in vm.myExam">
+    <md-expansion-panel md-component-id="panelOne" ng-repeat="data in vm.myExam" ng-click="vm.showResultDetail(data)">
         <md-expansion-panel-collapsed>
             <div class="md-title">{{data.name}}</div>
             <div class="md-summary">{{data.description}}</div>
@@ -57,12 +57,12 @@
                 <md-card>
                     <md-card-header>
                         <md-card-header-text>
-                            <span class="md-title">{{vm.answer.exam}}</span>
-                            <span class="md-subhead">{{vm.answer.created_at}}</span>
+                            <span class="md-title">so hoc sinh</span>
+                            <span class="md-subhead">a</span>
                         </md-card-header-text>
                     </md-card-header>
-                    <md-content layout="row" layout-align="center center">
-                        <nvd3 options="vm.chartOptions" data="vm.memoryChartData"></nvd3>
+                    <md-content layout="row">
+                        <nvd3 options="data.chartOptions" data="data.ramChartData"></nvd3>
                     </md-content>
                 </md-card>
             </md-expansion-panel-content>
