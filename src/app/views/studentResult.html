@@ -12,20 +12,22 @@
     <!-- exact table from live demo -->
     <md-table-container>
         <table md-table  class="table table-hover table-bordered" >
-            <thead md-head md-order="query.order" md-on-reorder="vm.getItems()">
+            <thead md-head md-order="myOrder" md-on-reorder="vm.getItems()">
             <tr md-row>
-                <th md-column md-order-by="nameToLower"><span>Student Name</span></th>
-                <th md-column md-numeric md-order-by="calories.value"><span>Mark</span></th>
-                <th md-column md-numeric>Pass</th>
+                <th md-column md-order-by="user.local.username"><span>Student Name</span></th>
+                <th md-column md-numeric md-order-by="mark"><span>Mark</span></th>
+                <th md-column md-numeric md-order-by="markByPercent">Pass</th>
                 <th md-column md-numeric>Percent</th>
 
             </tr>
             </thead>
             <tbody md-body>
-            <tr md-row md-select="item" md-select-id="name" md-auto-select ng-repeat="item in vm.studentResult">
+            <tr md-row md-select="item" md-select-id="name" md-auto-select ng-repeat="item in vm.studentResult | orderBy:myOrder">
                 <td md-cell>{{item.user.local.username}}</td>
                 <td md-cell>{{item.mark}}</td>
-                <td md-cell>{{item.status}}</td>
+                <td md-cell ng-if="item.markByPercent > 40">Pass</td>
+                <td md-cell ng-if="item.markByPercent <= 40">Fail</td>
+
                 <td md-cell>
                     <md-progress-linear class="table-progress  md-warn"
                                         md-mode="determinate"

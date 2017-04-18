@@ -19,16 +19,16 @@
                 icon: 'person',
                 sref: '.profile'
             },
-            // {
-            //     name: 'Table',
-            //     icon: 'view_module',
-            //     sref: '.table'
-            // },
-            // {
-            //     name: 'Data Table',
-            //     icon: 'view_module',
-            //     sref: '.data-table'
-            // },
+            {
+                name: 'Table',
+                icon: 'view_module',
+                sref: '.table'
+            },
+            {
+                name: 'Data Table',
+                icon: 'view_module',
+                sref: '.data-table'
+            },
             {
                 name: 'Exam',
                 icon: 'event_note',

@@ -43,7 +43,13 @@
                 }).catch(function(err) {
                 console.log(err);
             });       
-        }
+        };
+
+        vm.query = {
+            order: 'name',
+            limit: 10,
+            page: 1
+        };
     }
 
 })();
