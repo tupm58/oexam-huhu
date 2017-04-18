@@ -34,9 +34,10 @@
             <div class="md-title">{{data.name}}</div>
             <div class="md-summary">{{data.description}}</div>
             <div class="md-title">
-                <md-button  ui-sref="home.studentResultDetail({ examId: data._id})">
+                <md-button class="md-warn md-raised"  ui-sref="home.studentResultDetail({ examId: data._id})">
                     View
-                </md-button></div>
+                </md-button>
+            </div>
             <md-expansion-panel-icon></md-expansion-panel-icon>
         </md-expansion-panel-collapsed>
         <md-expansion-panel-expanded>
@@ -65,9 +66,12 @@
                     </md-content>
                 </md-card>
             </md-expansion-panel-content>
-            <md-expansion-panel-footer>
+            <md-expansion-panel-footer ng-click="$panel.collapse()">
                 <div flex></div>
-                <md-button class="md-warn" ng-click="$panel.collapse()">Close</md-button>
+                <md-button class="md-warn">
+                    <i class="material-icons">keyboard_arrow_up</i>
+                </md-button>
+                <div flex></div>
             </md-expansion-panel-footer>
         </md-expansion-panel-expanded>
     </md-expansion-panel>

@@ -1,6 +1,8 @@
-<md-button ng-click="vm.export()">EX</md-button>
+<md-button ng-click="vm.export()"  class="md-warn md-raised" style="float: right">
+    Export CSV  <i class="material-icons">file_download</i>
+</md-button>
 <div class="table-responsive-vertical md-whiteframe-z1">
-    <!-- TODO: Replace table to table component when https://github.com/angular/material/issues/796 will closed -->
+    <!-- TODO: filter order by-->
     <md-toolbar class="md-table-toolbar md-default">
         <div class="md-toolbar-tools">
             <span>Exam Name</span>
