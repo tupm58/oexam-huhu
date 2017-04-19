@@ -81,9 +81,11 @@
         vm.showLeaderBoard = function(){
             vm.gameState = 'leaderBoard';
             // call to show leader board ? call from db?
+            vm.leaderBoard = [];
             quizService.showLeaderBoard(vm.gameId)
                 .then(function(res){
-                    console.log(res);
+                    console.log(res.data);
+                    vm.leaderBoard = res.data;
                 }).catch(function(err){
                     console.log(err);
             })
@@ -93,26 +95,45 @@
             vm.gameState = 'question';
             var index = listQuestion.indexOf(currentQuestion);
             index ++;
-            vm.currentQuestion = listQuestion[index];
-            vm.countdown = config.countHost;
-            $interval(function() {
-                vm.countdown--;
-            },1000, vm.countdown)
-                .then(function() {
-                    vm.gameState = 'postQuestion';
-                    vm.correctAnswer = vm.currentQuestion.answers.filter(function(answer){
+            if (index == listQuestion.length){
+                vm.gameState = 'endGame';
+                // call to show leader board ? call from db?
+                vm.leaderBoard = [];
+                quizService.showLeaderBoard(vm.gameId)
+                    .then(function(res){
+                        console.log(res.data);
+                        vm.leaderBoard = res.data;
+                    }).catch(function(err){
+                    console.log(err);
+                })
+                Socket.emit('endGame',{
+                    message : 'END GAME'
+                })
+            }else{
+                vm.currentQuestion = listQuestion[index];
+                vm.countdown = config.countHost;
+                $interval(function() {
+                    vm.countdown--;
+                },1000, vm.countdown)
+                    .then(function() {
+                        vm.gameState = 'postQuestion';
+                        vm.correctAnswer = vm.currentQuestion.answers.filter(function(answer){
                             return answer.correct == true;
+                        });
                     });
+                Socket.emit('showQuestion',{
+                    question : vm.currentQuestion,
+                    gameId : vm.gameId
                 });
-            Socket.emit('showQuestion',{
-                question : vm.currentQuestion,
-                gameId : vm.gameId
-            });
+            }
+
 
         };
         Socket.on('receiveAnswer',function(data){
             vm.listUserAnswer.push(data);
         });
+        
+        
 
 
     }

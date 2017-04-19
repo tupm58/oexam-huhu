@@ -6,12 +6,13 @@
     angular
         .module('app')
         .controller('QuizController', [
-            'quizService',
+            'quizService','$rootScope',
             QuizController
         ]);
 
-    function QuizController(quizService) {
+    function QuizController(quizService,$rootScope) {
         var vm = this;
+        // $rootScope.color =  'red';
 
         vm.quizList = [];
 

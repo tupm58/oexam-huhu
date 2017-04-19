@@ -1,88 +1,151 @@
+<div style="background-color: #8BC34A; height: 100vh;" class="md-padding">
+    <div ng-if="vm.gameState == 'waitingRoom'">
+        <div layout-align="center center" layout="column">
+            <div style="font-size: 120px; ">
+                <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                    <md-card-actions layout="row" layout-align="end center">
+                        PIN : <b>{{vm.gameId}}</b>
 
-<div ng-if="vm.gameState == 'waitingRoom'"   md-colors="{background: '#E57373'}">
-    <div layout-align="center center" layout="column">
-        <h1>
-            PIN : <b>{{vm.gameId}}</b>
-        </h1>
-        <md-button  layout-align="center center"
-                    flex class="capitalize md-raised md-warn"
-                    ng-click="vm.startGame()">
-            <div class="md-tile-content">
-                <i class="material-icons md-48">play_circle_outline</i>
+                    </md-card-actions>
+                </md-card>
             </div>
-            <div class="md-tile-content">
-                START
+            <md-button layout-align="center center"
+                        flex class="capitalize md-raised md-warn"
+                        ng-click="vm.startGame()">
+                <div class="md-tile-content">
+                    <i class="material-icons md-48">play_circle_outline</i>
+                </div>
+                <div class="md-tile-content">
+                    START
+                </div>
+            </md-button>
+        </div>
+
+
+        <md-list layout-gt-md="row" layout-wrap>
+            <md-list-item flex="30" class="md-3-line" ng-repeat="user in vm.listUserInGame" ng-click="null">
+                <img ng-src="http://localhost:8000{{user.avatar}}" class="md-avatar"/>
+                <div class="md-list-item-text" layout="column">
+                    <h3><b>{{ user.username }}</b></h3>
+                </div>
+            </md-list-item>
+        </md-list>
+
+    </div>
+
+    <div ng-if="vm.gameState == 'question'" >
+        <!--count down-->
+        <div layout="row">
+            <div style="font-size: 120px" flex="10">{{vm.countdown}}</div>
+
+            <section flex layout-margin class="md-whiteframe-z1 panel-widget" class="fixed-height-widget"
+                     class="md-padding">
+                <div>
+                    <md-toolbar md-theme="custom" class="md-hue-1 panel-widget-toolbar">
+                        <div class="md-toolbar-tools" layout-align="center center">
+                            <h3 class="panel-widget-tittle"><b>{{vm.currentQuestion.name}}</b></h3>
+                        </div>
+                    </md-toolbar>
+                    <md-content class="md-padding" >
+                        <div ng-if="vm.currentQuestion.img">
+                            <img ng-src="http://localhost:8000{{vm.currentQuestion.img}}" alt="">
+                        </div>
+                        <br>
+                        <div ng-if="vm.currentQuestion.audio">
+                            <audio src="{{ 'http://localhost:8000'  + vm.currentQuestion.audio | trustUrl}}" type="audio/mp3"
+                                   controls></audio>
+                        </div>
+                        <br>
+                        <div layout-gt-md="row" layout-wrap>
+                            <md-button ng-repeat="answer in vm.currentQuestion.answers" flex="40" class="md-raised md-warn">
+                                {{answer.content}}
+                            </md-button>
+
+                        </div>
+
+                    </md-content>
+                </div>
+            </section>
+        </div>
+
+    </div>
+
+    <div ng-if="vm.gameState == 'postQuestion'">
+        <!--correct answer is -->
+        <div layout-align="center center" layout="column">
+            <div style="font-size: 80px; color:#E75753 ">
+                <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                    <md-card-actions layout="row" layout-align="end center">
+                        Correct Answer is : <b>{{vm.correctAnswer[0].content}}</b>
+                    </md-card-actions>
+                    <md-card-actions layout="row" layout-align="end center">
+                        Number of right users:
+                        <b>{{vm.listUserAnswer.length}}</b>
+                    </md-card-actions>
+                </md-card>
             </div>
+            <md-button layout-align="center center"
+                       flex class="capitalize md-raised md-warn"
+                       ng-click="vm.showLeaderBoard() ">
+                    See leaderboard
+                <i class="material-icons">grade</i>
+            </md-button>
+        </div>
+
+    </div>
+
+    <div ng-if="vm.gameState == 'leaderBoard' ">
+        <!--show leader board-->
+        <h2 layout-align="center center">LEADER BOARD</h2>
+
+        <!--next question-->
+        <md-button class="md-warn md-raised"  style="float:right"
+                   ng-click="vm.nextQuestion(vm.currentQuestion)">
+            NEXT
+            <i class="material-icons">skip_next</i>
         </md-button>
+        <div class="table-responsive-vertical md-whiteframe-z1">
+            <table id="table" class="table table-hover table-bordered">
+                <thead>
+                <tr>
+                    <th><b>#</b></th>
+                    <th><b>NAME</b></th>
+                    <th><b>SCORE</b></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="data in vm.leaderBoard track by $index">
+                    <td data-title="ID">{{$index + 1}}</td>
+                    <td data-title="Issue">{{data._id.local.username}}</td>
+                    <td data-title="Status">{{data.totalScore}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
+    <div ng-if="vm.gameState == 'endGame' ">
+        <!--show leader board-->
+        <h2 layout-align="center center">END GAME</h2>
 
-    <md-list layout-gt-md="row" layout-wrap>
-        <md-list-item flex="30" class="md-3-line" ng-repeat="user in vm.listUserInGame" ng-click="null">
-            <img ng-src="http://localhost:8000{{user.avatar}}" class="md-avatar"/>
-            <div class="md-list-item-text" layout="column">
-                <h3><b>{{ user.username }}</b></h3>
-            </div>
-        </md-list-item>
-    </md-list>
-
-</div>
-
-<div ng-if="vm.gameState == 'question'" >
-    <!--count down-->
-    <div layout="row">
-        <div style="font-size: 120px" flex="10">{{vm.countdown}}</div>
-
-        <section flex layout-margin class="md-whiteframe-z1 panel-widget" class="fixed-height-widget"
-                 class="md-padding">
-            <div>
-                <md-toolbar md-theme="custom" class="md-hue-1 panel-widget-toolbar">
-                    <div class="md-toolbar-tools" layout-align="center center">
-                        <h3 class="panel-widget-tittle"><b>{{vm.currentQuestion.name}}</b></h3>
-                    </div>
-                </md-toolbar>
-                <md-content class="md-padding" >
-                    <div ng-if="vm.currentQuestion.img">
-                        <img ng-src="http://localhost:8000{{vm.currentQuestion.img}}" alt="">
-                    </div>
-                    <br>
-                    <div ng-if="vm.currentQuestion.audio">
-                        <audio src="{{ 'http://localhost:8000'  + vm.currentQuestion.audio | trustUrl}}" type="audio/mp3"
-                               controls></audio>
-                    </div>
-                    <br>
-                    <div layout-gt-md="row" layout-wrap>
-                        <md-button ng-repeat="answer in vm.currentQuestion.answers" flex="40" class="md-raised md-warn">
-                            {{answer.content}}
-                        </md-button>
-
-                    </div>
-
-                </md-content>
-            </div>
-        </section>
+        <!--next question-->
+        <div class="table-responsive-vertical md-whiteframe-z1">
+            <table id="table2" class="table table-hover table-bordered">
+                <thead>
+                <tr>
+                    <th><b>#</b></th>
+                    <th><b>NAME</b></th>
+                    <th><b>SCORE</b></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="data in vm.leaderBoard track by $index">
+                    <td data-title="ID">{{$index + 1}}</td>
+                    <td data-title="Issue">{{data._id.local.username}}</td>
+                    <td data-title="Status">{{data.totalScore}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-
-</div>
-
-<div ng-if="vm.gameState == 'postQuestion'">
-    <!--correct answer is -->
-    Câu trả lời đúng là:
-    <div>
-        {{vm.correctAnswer[0].content}}
-    </div>
-    <!--correct by list user-->
-    số người trả lời đúng là :
-    {{vm.listUserAnswer.length}}
-    <md-button ng-click="vm.showLeaderBoard()">See leaderboard</md-button>
-
-</div>
-
-<div ng-if="vm.gameState == 'leaderBoard' ">
-    <!--show leader board-->
-    LEADER BOARD
-
-    <!--next question-->
-    <md-button ng-click="vm.nextQuestion(vm.currentQuestion)">NEXT</md-button>
-    <md-button ng-click="vm.endGame()">END GAME</md-button>
 </div>

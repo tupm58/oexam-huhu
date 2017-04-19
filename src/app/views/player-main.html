@@ -1,6 +1,22 @@
-player main
-<h1>Fill PIN</h1>
-<input type="text" ng-model="vm.gameId">
-<md-button ui-sref="home.playerDetail({ pin: vm.gameId})">
-    PLAY
-</md-button>
+
+<div style="background-color: #8BC34A; height: 100vh;" class="md-padding">
+<div layout-align="center center" layout="column" class="md-padding">
+    <div style="font-size: 40px; ">
+        <md-card>
+            <md-card-actions layout="row" layout-align="end center" >
+                <md-input-container md-no-float class="md-block">
+                    <input ng-model="vm.gameId" type="text" placeholder="Enter a PIN" required>
+                </md-input-container>
+            </md-card-actions>
+            <md-button layout-align="center center"
+                       flex class="capitalize md-raised md-warn"
+                       ui-sref="home.playerDetail({ pin: vm.gameId})">
+                JOIN
+                <i class="material-icons md-48">play_circle_outline</i>
+            </md-button>
+        </md-card>
+
+    </div>
+
+</div>
+    </div>

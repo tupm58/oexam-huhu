@@ -1,31 +1,43 @@
-player detail
+<div style="background-color: yellow; height: 100vh;" class="md-padding">
 
-<div ng-if="vm.gameState == 'waitingRoom' ">
-    <b>{{vm.playJoinGameMessage}}</b>
-</div>
-
-<div ng-if="vm.gameState == 'question'" >
-
-    <!--count down-->
-    <div>{{vm.countdown}}</div>
-
-    <!--question-->
-    <b>{{vm.currentQuestion.name}}</b>
-    <!--4 answer-->
-    <div ng-repeat="answer in vm.currentQuestion.answers">
-        <md-button class="md-raised md-warn" ng-click="vm.saveAnswer(answer)">
-            {{answer.content}}
-        </md-button>
-
+    <div style="padding:60px" ng-if="vm.gameState == 'waitingRoom' ">
+        <b style="font-size: 50px;">{{vm.playJoinGameMessage}}</b>
     </div>
+
+    <div ng-if="vm.gameState == 'question'" >
+
+        <!--count down-->
+        <div>{{vm.countdown}}</div>
+
+        <section flex layout-margin class="md-whiteframe-z1 panel-widget" class="fixed-height-widget"
+                 class="md-padding">
+            <div>
+                <md-toolbar md-theme="custom" class="md-hue-1 panel-widget-toolbar">
+                    <div class="md-toolbar-tools" layout-align="center center">
+                        <h3 class="panel-widget-tittle"><b>{{vm.currentQuestion.name}}</b></h3>
+                    </div>
+                </md-toolbar>
+                <md-content class="md-padding" >
+                    <div layout-gt-md="row" layout-wrap>
+                        <md-button ng-repeat="answer in vm.currentQuestion.answers" flex="40" class="md-raised md-warn"
+                                   ng-click="vm.saveAnswer(answer)">
+                            {{answer.content}}
+                        </md-button>
+
+                    </div>
+
+                </md-content>
+            </div>
+        </section>
+    </div>
+
+    <div ng-if="vm.gameState == 'loadingAnswer' ">
+        loading after click answer
+    </div>
+
+
+    <div ng-if="vm.gameState == 'postQuestion' ">
+        leader board or your position
+    </div>
+
 </div>
-
-<div ng-if="vm.gameState == 'loadingAnswer' ">
-    loading after click answer
-</div>
-
-
-<div ng-if="vm.gameState == 'postQuestion' ">
-    leader board or your position
-</div>
-

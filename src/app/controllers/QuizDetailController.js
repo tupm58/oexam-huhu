@@ -14,6 +14,7 @@
         var vm = this;
 
         vm.quizData = initialData;
+        console.log(vm.quizData);
         var quizId = $stateParams.id; 
         vm.createNewRoom = function(){
             var gameId = (Math.random()*100000) | 0;

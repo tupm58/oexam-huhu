@@ -52,6 +52,7 @@
                 });
         });
         Socket.on('showLeaderBoard',function(data){
+            
         });
         //answer question
         vm.saveAnswer = function (answer){

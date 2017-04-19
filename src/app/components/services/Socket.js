@@ -28,7 +28,6 @@
         function connect() {
             // Connect only when authenticated
             // if (Authentication.user) {
-            
                 service.socket = io(config.basicUrl);
             // }
         }

@@ -1,7 +1,36 @@
-quiz detail
+<div layout-gt-md="row">
+    <section flex layout-margin class="md-whiteframe-z1 panel-widget" class="fixed-height-widget">
 
+        <div>
+            <md-toolbar md-theme="custom" class="md-hue-1 panel-widget-toolbar">
+                <div class="md-toolbar-tools">
+                    <h3 class="panel-widget-tittle"><b>{{vm.quizData.name}}</b></h3>
+                    <md-button class="md-raised md-warn" ng-click="vm.createNewRoom()" style="float: right" >
+                        CREATE NEW PIN
+                        <i class="material-icons">games</i>
+                    </md-button>
 
-<md-button ng-click="vm.createNewRoom()">
-    START SOCKET - create new PIN
+                </div>
+            </md-toolbar>
+            <md-content class="md-padding">
 
-</md-button>
+                    <div class="table-responsive-vertical md-whiteframe-z1">
+                        <table id="table" class="table table-hover table-bordered">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Question</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="data in vm.quizData.questions track by $index">
+                                <td data-title="ID">{{$index + 1}}</td>
+                                <td data-title="Issue">{{data.name}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+            </md-content>
+        </div>
+    </section>
+</div>

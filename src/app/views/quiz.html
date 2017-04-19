@@ -1,19 +1,46 @@
-<md-list-item class="md-3-line" ng-repeat="item in vm.quizList" ng-click="null">
-    <div class="md-list-item-text" layout="column" >
-        <div layout="row">
-            <div flex="80">
-                <h3>{{ item.name }}</h3>
-                <h4>{{ item.created_at }}</h4>
-            </div>
+<!--<md-list-item class="md-3-line" ng-repeat="item in vm.quizList" ng-click="null">-->
+    <!--<div class="md-list-item-text" layout="column" >-->
+        <!--<div layout="row">-->
+            <!--<div flex="80">-->
+                <!--<h3>{{ item.name }}</h3>-->
+                <!--<h4>{{ item.created_at }}</h4>-->
+            <!--</div>-->
 
-            <md-button class="md-raised md-warn" flex="20" ui-sref="home.quizDetail({ id: item._id})">
-                PLAY
-            </md-button>
-        </div>
+            <!--<md-button class="md-raised md-warn" flex="20" ui-sref="home.quizDetail({ id: item._id})">-->
+                <!--PLAY-->
+            <!--</md-button>-->
+        <!--</div>-->
 
-    </div>
-</md-list-item>
+    <!--</div>-->
+<!--</md-list-item>-->
 
-<md-button ui-sref="home.player">
-    JOIN A ROOM
+<!--<md-button ui-sref="home.player">-->
+    <!--JOIN A ROOM-->
+<!--</md-button>-->
+<md-button  ui-sref="home.player"  class="md-warn md-raised" style="float: right">
+    JOIN A ROOM  <i class="material-icons">fast_forward</i>
 </md-button>
+<div class="table-responsive-vertical md-whiteframe-z1">
+    <table id="table" class="table table-hover table-bordered">
+        <thead>
+        <tr>
+            <th><b>#</b></th>
+            <th><b>Quiz</b></th>
+            <th><b>Created at</b></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in vm.quizList track by $index">
+            <td data-title="ID">{{$index + 1}}</td>
+            <td data-title="Issue">{{ item.name }}</td>
+            <td data-title="Status">{{ item.created_at | date:'medium'}}</td>
+            <td data-title="Progress">
+                <md-button class="md-raised md-warn" ui-sref="home.quizDetail({ id: item._id})">
+                     PLAY
+                </md-button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

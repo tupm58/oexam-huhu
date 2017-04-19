@@ -5,7 +5,9 @@
 
     angular
         .module('app')
-        .controller('ExamDetailController', ['examService', '$stateParams', '$timeout', 'initialData','$mdToast','$state','cfpLoadingBar','$sce',
+        .controller('ExamDetailController', ['examService', '$stateParams',
+            '$timeout', 'initialData','$mdToast','$state',
+            'cfpLoadingBar','$sce','Socket',
             ExamDetailController
         ])
         .filter('trustUrl',['$sce',trustUrl])
@@ -15,7 +17,8 @@
             return $sce.trustAsResourceUrl(url);
         };
     }
-    function ExamDetailController(examService,$stateParams,$timeout,initialData,$mdToast,$state,cfpLoadingBar,$sce) {
+    function ExamDetailController(examService,$stateParams,$timeout,
+                                  initialData,$mdToast,$state,cfpLoadingBar,$sce,Socket) {
 
 
         console.log("detail");
@@ -122,8 +125,20 @@
             };
             $timeout(vm.onTimeout, 1000);
 
-        }
-    };
+        };
+        
+        Socket.connect();
+        Socket.emit('connected',{
+            username: localStorage.getItem('username'),
+            examId : vm.examId
+        });
+        Socket.on('connected',function(data){
+           console.log(data); 
+        });
+        Socket.on('user disconnected',function(data){
+            console.log(data.message);
+        })
+    }
 
     function huhuCtrl(){
         var hu = this;
