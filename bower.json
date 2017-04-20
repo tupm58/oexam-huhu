@@ -21,5 +21,10 @@
     "socket.io-client": "^1.7.2",
     "angular-material-expansion-panel": "^0.7.2"
   },
+  "overrides": {
+    "socket.io-client": {
+      "main": "dist/socket.io.js"
+    }
+  },
   "devDependencies": {}
 }

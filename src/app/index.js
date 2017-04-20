@@ -190,7 +190,16 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
                 data: {
                     title: 'Student Result'
                 }
-            });
+            })
+            .state('home.studentRoom', {
+                url: '/student-result/room/:examId',
+                controller: 'StudentController',
+                controllerAs: 'vm',
+                templateUrl: 'app/views/studentRoom.html',
+                data: {
+                    title: 'Student Room'
+                }
+            })
 
         $urlRouterProvider.otherwise('/dashboard');
 

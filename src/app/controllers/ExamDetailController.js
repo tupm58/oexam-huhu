@@ -128,16 +128,11 @@
         };
         
         Socket.connect();
-        Socket.emit('connected',{
+        Socket.emit('room',{
             username: localStorage.getItem('username'),
             examId : vm.examId
         });
-        Socket.on('connected',function(data){
-           console.log(data); 
-        });
-        Socket.on('user disconnected',function(data){
-            console.log(data.message);
-        })
+       
     }
 
     function huhuCtrl(){
