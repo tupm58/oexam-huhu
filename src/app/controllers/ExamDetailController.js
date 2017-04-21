@@ -132,7 +132,8 @@
             username: localStorage.getItem('username'),
             examId : vm.examId
         });
-       
+        Socket.emit('joinSuccess');
+
     }
 
     function huhuCtrl(){
