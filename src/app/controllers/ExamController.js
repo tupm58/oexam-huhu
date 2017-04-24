@@ -60,9 +60,6 @@
                 .then(function(tableData) {
                     console.log(tableData.data);
                     vm.tableData =  tableData.data;
-                    // // Represents the count of database count of records, not items array!
-                    // vm.totalItems = tableData.count;
-
                 });
 
         }
@@ -75,9 +72,6 @@
             .then(function(tableData) {
                 console.log(tableData.data);
                 vm.myExam =  tableData.data;
-                // // Represents the count of database count of records, not items array!
-                // vm.totalItems = tableData.count;
-
             });
 
 
@@ -105,7 +99,8 @@
                             valueFormat: (d3.format(".0f")),
                             color: ['rgb(0, 150, 136)', '#E75753', 'rgb(235, 235, 235)'],
                             showLabels: false,
-                            showLegend: false,
+                            showLegend: true,
+                            legendPosition: 'right',
                             title: doTime,
                             margin: { top: -10, left: -20, right: -20 }
                         }

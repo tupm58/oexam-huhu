@@ -150,12 +150,21 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
                 controllerAs: 'vm',
                 templateUrl: 'app/views/player.html',
                 resolve: {
-                    initialData: ['quizService', '$stateParams','$state', function (quizService, $stateParams,$state) {
+                    initialData: ['quizService', '$stateParams','$state','$mdToast',
+                        function (quizService, $stateParams,$state,$mdToast) {
                         return quizService.checkPinValid($stateParams.pin)
                             .then(function (response) {
                                 console.log("pin ok");
                             }).catch(function (err) {
                                 console.log("pin sai");
+
+                                $mdToast.show(
+                                    $mdToast.simple()
+                                        .textContent('PIN not found!')
+                                        .position('bottom right')
+                                        .hideDelay(3000)
+                                        .toastClass('md-toast-error')
+                                );
                                 $state.go('home.player');
                             })
                     }]
@@ -224,7 +233,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
             .primaryPalette('defaultPrimary', {
                 'hue-1': '50'
             });
-
+        $mdThemingProvider.theme('error-toast');
         $mdThemingProvider.definePalette('defaultPrimary', {
             '50': '#FFFFFF',
             '100': 'rgb(255, 198, 197)',

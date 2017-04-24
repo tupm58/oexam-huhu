@@ -17,6 +17,10 @@ body {
   color: $text-color;
 }
 
+.md-toast-error .md-toast-content{
+  background: rgb(231, 88, 84) !important;
+
+}
 .toolbar-button {
   min-width: 20px;
 }
