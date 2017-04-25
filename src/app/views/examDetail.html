@@ -24,10 +24,12 @@
 
 <div ng-show="!vm.show">
     <div data-ng-repeat="section in vm.listCustom">
-        <md-subheader class="md-warn">
+        <md-subheader class="md-warn" style="border: #dbdde0 1px solid">
+            <b>{{section.name}}</b>:
+
             <timer countdown="section.timeInMinute * 60 " max-time-unit="'minute'" interval="1000">
-                <!--{{mminutes}}minute{{minutesS}}, {{sseconds}} second{{secondsS}}-->
-                {{mminutes}}:{{sseconds}}
+                {{mminutes}} minute{{minutesS}}, {{sseconds}} second{{secondsS}}
+                <!--{{mminutes}}:{{sseconds}}-->
 
             </timer>
         </md-subheader>
@@ -59,11 +61,6 @@
                             {{answer.content}}
                         </md-radio-button>
                     </md-radio-group>
-
-                    <!--<md-input-container class="md-block" flex-gt-sm  >-->
-                        <!--<label>Your answer</label>-->
-                        <!--<input ng-model="question.selectedAnswer">-->
-                    <!--</md-input-container>-->
                     <md-content layout-gt-sm="row" ng-if="question.category == 'fill' ">
                             <md-input-container>
                                 <label>Your answer</label>

@@ -7,13 +7,13 @@
     angular
         .module('app')
         .controller('PlayerController', [
-            'examService', '$stateParams',
+            'quizService', '$stateParams',
             '$scope', 'Socket','$interval',
             PlayerController
 
         ]);
 
-    function PlayerController(examService, $stateParams, $scope, Socket,$interval) {
+    function PlayerController(quizService, $stateParams, $scope, Socket,$interval) {
         var vm = this;
         vm.gameId = $stateParams.pin;
         vm.gameState = '';
@@ -48,19 +48,19 @@
             },100, vm.countdown)
                 .then(function() {
                     vm.gameState = 'postQuestion';
-
                 });
         });
-        Socket.on('showLeaderBoard',function(data){
-            
-        });
+
         //answer question
         vm.saveAnswer = function (answer){
             console.log(vm.countdown);
             vm.gameState = 'loadingAnswer';
             var score = 0;
+            vm.trueAnswer = false;
+
             if (answer.correct == true){
                 console.log("true answer");
+                vm.trueAnswer = true;
                 score = 10;
                 Socket.emit('sendAnswer',{
                     gameId: vm.gameId,

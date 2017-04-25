@@ -37,7 +37,12 @@
 
 
     <div ng-if="vm.gameState == 'postQuestion' ">
-        leader board or your position
+        <span ng-if="vm.trueAnswer"
+              layout-align="center center" style="font-size:100px;padding: 300px">
+            Good Job !
+        </span>
+        <span ng-if="!vm.trueAnswer" style="font-size:100px;padding: 200px">You 're wrong  :( </span>
+
     </div>
 
 </div>

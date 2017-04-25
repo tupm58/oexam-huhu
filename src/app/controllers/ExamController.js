@@ -13,21 +13,6 @@
         ]);
 
     function ExamController(examService ,resultService, $scope,$mdExpansionPanelGroup) {
-        // $mdExpansionPanelGroup().waitFor('panelGroup').then(function (instance) {
-        //     instance.register('panelOne', {
-        //         templateUrl: 'templateOne.html',
-        //         controller: 'TemplateOneController',
-        //         controllerAs: 'vm'
-        //     });
-        //
-        //     instance.register('panelTwo', {
-        //         templateUrl: 'templateTwo.html',
-        //         controller: 'TemplateTwoController',
-        //         controllerAs: 'vm'
-        //     });
-        // });
-
-
         var vm = this;
 
         vm.tableData = [];

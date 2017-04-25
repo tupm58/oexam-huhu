@@ -31,16 +31,17 @@
 <md-expansion-panel-group md-component-id="panelGroup" multiple>
     <md-expansion-panel md-component-id="panelOne" ng-repeat="data in vm.myExam" ng-click="vm.showResultDetail(data)">
         <md-expansion-panel-collapsed>
-            <md-button class="md-warn md-raised md-fab"  ui-sref="home.studentRoom({ examId: data._id})">
-                <i class="material-icons">visibility</i>
+            <md-button class="md-accent md-raised md-fab md-mini"  ui-sref="home.studentRoom({ examId: data._id})">
+                <i class="material-icons" >visibility</i>
             </md-button>
 
             <div class="md-title">{{data.name}}</div>
             <div class="md-summary">{{data.created_at |  date:'medium'}}</div>
 
             <div class="md-title">
-                <md-button class="md-warn md-raised"  ui-sref="home.studentResultDetail({ examId: data._id})">
-                    View</md-button>
+                <md-button class="md-warn md-raised"
+                           ui-sref="home.studentResultDetail({ examId: data._id})">
+                    Student Result</md-button>
 
             </div>
             <md-expansion-panel-icon></md-expansion-panel-icon>
@@ -66,7 +67,7 @@
                             <!--<span class="md-subhead">a</span>-->
                         </md-card-header-text>
                     </md-card-header>
-                    <md-content layout="row" class="md-padding">
+                    <md-content layout="row" class="md-padding" layout-align = "center center">
                         <nvd3 options="data.chartOptions" data="data.ramChartData"></nvd3>
                     </md-content>
                 </md-card>

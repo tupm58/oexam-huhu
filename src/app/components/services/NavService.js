@@ -30,7 +30,7 @@
             //     sref: '.data-table'
             // },
             {
-                name: 'Exam',
+                name: 'Examination',
                 icon: 'event_note',
                 sref: '.exam'
             },
@@ -45,7 +45,7 @@
                 sref: '.myResult'
             },
             {
-                name: 'Student',
+                name: 'My Exam',
                 icon: 'assessment',
                 sref: '.studentResult'
             }

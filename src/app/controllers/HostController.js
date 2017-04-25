@@ -105,7 +105,7 @@
                         vm.leaderBoard = res.data;
                     }).catch(function(err){
                     console.log(err);
-                })
+                });
                 Socket.emit('endGame',{
                     message : 'END GAME'
                 })

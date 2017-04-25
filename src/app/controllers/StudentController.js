@@ -40,6 +40,7 @@
                     return val;
                 }
             })
+            console.log(vm.listOnline.length);
         });
         Socket.on('disconnect',function(data){
             // var index = vm.listOnline.indexOf(data);

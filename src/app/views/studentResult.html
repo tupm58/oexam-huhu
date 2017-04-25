@@ -15,6 +15,7 @@
             <thead md-head md-order="myOrder" md-on-reorder="vm.getItems()">
             <tr md-row>
                 <th md-column md-order-by="user.local.username"><span>Student Name</span></th>
+                <th md-column md-numeric md-order-by="created_at"><span>Date</span></th>
                 <th md-column md-numeric md-order-by="mark"><span>Mark</span></th>
                 <th md-column md-numeric md-order-by="markByPercent">Pass</th>
                 <th md-column md-numeric>Percent</th>
@@ -24,12 +25,13 @@
             <tbody md-body>
             <tr md-row md-select="item" md-select-id="name" md-auto-select ng-repeat="item in vm.studentResult | orderBy:myOrder">
                 <td md-cell>{{item.user.local.username}}</td>
+                <td md-cell>{{item.created_at | date:'medium' }}</td>
                 <td md-cell>{{item.mark}}</td>
                 <td md-cell ng-if="item.markByPercent > 50">Pass</td>
                 <td md-cell ng-if="item.markByPercent <= 50">Fail</td>
 
                 <td md-cell>
-                    <md-progress-linear  ng-if="item.markByPercent > 50"class="table-progress  md-primary"
+                    <md-progress-linear  ng-if="item.markByPercent > 50"class="table-progress  md-accent                                                                                        "
                                         md-mode="determinate"
                                         value={{item.markByPercent}}>
                     </md-progress-linear>
@@ -38,9 +40,6 @@
                                         value={{item.markByPercent}}>
                     </md-progress-linear>
                 </td>
-
-
-
             </tr>
             </tbody>
         </table>
