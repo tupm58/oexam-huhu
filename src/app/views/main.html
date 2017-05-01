@@ -25,7 +25,7 @@
 
 <div layout="column" flex>
     <!--<md-toolbar layout="row" layout-align="center center" md-scroll-shrink>-->
-        <md-toolbar layout="row" layout-align="center center">
+        <md-toolbar layout="row" layout-align="center center" ng-show="!vm.showSearch">
 
         <section layout-align="start center" layout-fill flex>
             <md-button hide-gt-sm ng-click="vm.toggleItemsList()" aria-label="Menu">
@@ -33,9 +33,10 @@
             </md-button>
         </section>
         <section layout-align="end center">
-            <md-button class="toolbar-button" aria-label="Search">
+            <md-button class="toolbar-button" aria-label="Search"  ng-click="vm.showSearch = !vm.showSearch">
                 <i class="material-icons">search</i>
             </md-button>
+
             <md-button class="toolbar-button" aria-label="Notifications">
                 <i class="material-icons">notifications</i>
                 <span class="notifications-label">7</span>
@@ -44,6 +45,21 @@
                 <i class="material-icons">menu</i>
             </md-button>
         </section>
+    </md-toolbar>
+    <md-toolbar ng-show="vm.showSearch" layout="row" layout-align="center center" class="md-padding">
+        <div class="md-toolbar-tools">
+            <md-button ng-click="vm.showSearch = !vm.showSearch" aria-label="Back">
+                <i class="material-icons">keyboard_backspace</i>
+            </md-button>
+
+            <md-input-container md-theme="docs-dark" md-no-float flex>
+                <input ng-model="search" placeholder="enter search">
+            </md-input-container>
+
+            <md-button aria-label="Search" class="toolbar-button" ng-click="vm.showSearch = !vm.showSearch">
+                <i class="material-icons">search</i>
+            </md-button>
+        </div>
     </md-toolbar>
 
     <md-content flex class="md-padding page-content">

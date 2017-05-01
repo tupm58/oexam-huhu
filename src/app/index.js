@@ -233,6 +233,10 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
             .primaryPalette('defaultPrimary', {
                 'hue-1': '50'
             });
+        $mdThemingProvider.theme('docs-dark', 'default')
+            .primaryPalette('pink')
+            .dark();
+
         $mdThemingProvider.theme('error-toast');
         $mdThemingProvider.definePalette('defaultPrimary', {
             '50': '#FFFFFF',

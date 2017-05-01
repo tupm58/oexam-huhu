@@ -20,7 +20,7 @@
 <md-button  ui-sref="home.player"  class="md-warn md-raised" style="float: right">
     JOIN A ROOM  <i class="material-icons">fast_forward</i>
 </md-button>
-<div class="table-responsive-vertical md-whiteframe-z1">
+<div class="table-responsive-vertical md-whiteframe-z1" >
     <table id="table" class="table table-hover table-bordered">
         <thead>
         <tr>
@@ -31,16 +31,19 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="item in vm.quizList track by $index">
+        <tr ng-repeat="item in vm.quizList|  filter:search track by $index " layout-align="center center" style="padding: 0">
             <td data-title="ID">{{$index + 1}}</td>
-            <td data-title="Issue">{{ item.name }}</td>
-            <td data-title="Status">{{ item.created_at | date:'medium'}}</td>
-            <td data-title="Progress">
-                <md-button class="md-raised md-warn" ui-sref="home.quizDetail({ id: item._id})">
+            <td data-title="Name">{{ item.name }}</td>
+            <td data-title="Date">{{ item.created_at | date:'medium'}}</td>
+            <td data-title="Action">
+                <md-button class="md-raised md-warn" ui-sref="home.quizDetail({ id: item._id})" style="margin: 0;">
                      PLAY
                 </md-button>
             </td>
         </tr>
         </tbody>
     </table>
+</div>
+<div ng-if="vm.quizList.length==0" >
+    <b>You have no quiz.</b>
 </div>

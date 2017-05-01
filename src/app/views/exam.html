@@ -1,6 +1,6 @@
 
 <div layout-gt-md="row" layout-wrap>
-        <section flex="30" data-ng-repeat="item in vm.tableData" layout-margin class="md-whiteframe-z1 panel-widget"  class="fixed-height-widget">
+        <section flex="30" data-ng-repeat="item in vm.tableData | filter:search" layout-margin class="md-whiteframe-z1 panel-widget"  class="fixed-height-widget">
             <div>
                 <md-toolbar md-theme="custom" class="md-hue-1 panel-widget-toolbar">
                     <div class="md-toolbar-tools">
@@ -16,7 +16,7 @@
                         {{item.description || 'No description'}}
                     </p>
                     <p><b>Time:</b>
-                        {{item.created_at}}
+                        {{item.created_at | date:'medium'}}
                     </p>
 
                     <md-button class="md-raised md-warn"  ui-sref="home.examDetail({ id: item._id})">

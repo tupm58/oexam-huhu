@@ -114,7 +114,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="data in vm.leaderBoard track by $index">
+                <tr ng-repeat="data in vm.leaderBoard | orderBy: 'data.totalScore':true track by $index  ">
                     <td data-title="ID">{{$index + 1}}</td>
                     <td data-title="Issue">{{data._id.local.username}}</td>
                     <td data-title="Status">{{data.totalScore}}</td>
@@ -139,7 +139,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="data in vm.leaderBoard track by $index">
+                <tr ng-repeat="data in vm.leaderBoard |orderBy: 'data.totalScore':true track by $index">
                     <td data-title="ID">{{$index + 1}}</td>
                     <td data-title="Issue">{{data._id.local.username}}</td>
                     <td data-title="Status">{{data.totalScore}}</td>

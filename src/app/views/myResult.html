@@ -10,7 +10,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="result in vm.myResultList track by $index" >
+        <tr ng-repeat="result in vm.myResultList  | filter:search  track by $index" >
             <td data-title="ID">{{$index + 1}}</td>
             <td data-title="Exam">{{result.exam.name}}</td>
             <td data-title="Date">{{result.created_at | date:'medium'}}</td>
