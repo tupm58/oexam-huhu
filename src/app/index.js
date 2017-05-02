@@ -127,6 +127,13 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
                 controllerAs: 'vm',
                 templateUrl: 'app/views/login.html'
             })
+            .state('afterLogin', {
+                url: '/token/:token',
+                controller: 'UserController',
+                controllerAs: 'vm',
+                templateUrl: 'app/views/user.html'
+
+            })
             .state('home.host', {
                 url: '/quiz/:id/host/:pin',
                 controller: 'HostController',

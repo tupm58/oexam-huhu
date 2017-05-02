@@ -14,12 +14,22 @@
     function userService($q,$http){
         return {
             login: login,
+            getUser: getUser
         
         };
 
         function login(opts) {
             return $http({
                 url: config.basicUrl + "/api/auth/login",
+                method: 'POST',
+                data: opts
+
+            })
+        }
+        
+        function getUser(opts){
+            return $http({
+                url: config.basicUrl + "/api/user",
                 method: 'POST',
                 data: opts
 
