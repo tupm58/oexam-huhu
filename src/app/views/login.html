@@ -1,33 +1,41 @@
-<md-content layout-padding layout="column"  flex layout-align="center center">
-    <md-button ng-click="vm.loginFB()">FB</md-button>
-    <form name="projectForm">
+<img ng-src="assets/images/cover1.png" alt="" width="60%" >
 
-        <md-input-container class="md-block">
-            <label>Username</label>
-            <input required type="text" name="username" ng-model="vm.login.username"/>
+<md-content layout-padding layout="column"  flex layout-align="center center"
+            ng-style="{'background-image':url('/src/assets/images/cover.png')  }"
+            style="background-color: #e75854">
+    <!--<h2>Online Exam</h2>-->
+    <md-button ng-click="vm.loginFB()">
+        <img ng-src="assets/images/facebook.png" alt="">
+    </md-button>
+    
+    <!--<form name="projectForm">-->
 
-            <div ng-messages="projectForm.username.$error" role="alert">
-                <div ng-message="required">
-                    You must accept the terms of service before you can proceed.
-                </div>
-            </div>
-        </md-input-container>
+        <!--<md-input-container class="md-block">-->
+            <!--<label>Username</label>-->
+            <!--<input required type="text" name="username" ng-model="vm.login.username"/>-->
 
-        <md-input-container class="md-block">
-            <label>Password</label>
-            <input required type="password" name="password" ng-model="vm.login.password"/>
+            <!--<div ng-messages="projectForm.username.$error" role="alert">-->
+                <!--<div ng-message="required">-->
+                    <!--You must accept the terms of service before you can proceed.-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</md-input-container>-->
 
-            <div ng-messages="projectForm.password.$error" role="alert">
-                <div ng-message="required">
-                    You must accept the terms of service before you can proceed.
-                </div>
-            </div>
-        </md-input-container>
+        <!--<md-input-container class="md-block">-->
+            <!--<label>Password</label>-->
+            <!--<input required type="password" name="password" ng-model="vm.login.password"/>-->
 
-        <div>
-            <md-button type="submit" ng-click="vm.login()">Submit</md-button>
-        </div>
-    </form>
+            <!--<div ng-messages="projectForm.password.$error" role="alert">-->
+                <!--<div ng-message="required">-->
+                    <!--You must accept the terms of service before you can proceed.-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</md-input-container>-->
+
+        <!--<div>-->
+            <!--<md-button type="submit" ng-click="vm.login()">Submit</md-button>-->
+        <!--</div>-->
+    <!--</form>-->
 </md-content>
 
 <!--<md-content layout-padding layout="column"  flex layout-align="center center">-->

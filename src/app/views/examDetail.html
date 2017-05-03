@@ -47,11 +47,11 @@
                         <b>{{question.name}}</b>
                     </div>
                     <div ng-if="question.img">
-                        <img ng-src="http://localhost:8000{{question.img}}" alt="">
+                        <img ng-src="https://damp-brushlands-61241.herokuapp.com{{question.img}}" alt="">
                     </div>
                     <br>
                     <div ng-if="question.audio">
-                        <audio src="{{ 'http://localhost:8000'  + question.audio | trustUrl}}" type="audio/mp3"
+                        <audio src="{{ 'https://damp-brushlands-61241.herokuapp.com'  + question.audio | trustUrl}}" type="audio/mp3"
                                controls></audio>
                     </div>
                     <br>

@@ -17,7 +17,18 @@
     vm.title = $state.current.data.title;
     vm.showSimpleToast = showSimpleToast;
     vm.toggleRightSidebar = toggleRightSidebar;
-    
+    //check login
+    checkLogin();
+    function checkLogin(){
+      if (!localStorage['auth-token']){
+        $state.go('login');
+      }
+    }
+    vm.logOut = function (){
+      localStorage.clear();
+      $state.go('login');
+
+    };
     //user info
       vm.username = localStorage.getItem('username');
       vm.img = localStorage.getItem('avatar');

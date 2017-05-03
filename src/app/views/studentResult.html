@@ -24,7 +24,7 @@
             </thead>
             <tbody md-body>
             <tr md-row md-select="item" md-select-id="name" md-auto-select ng-repeat="item in vm.studentResult | orderBy:myOrder">
-                <td md-cell>{{item.user.local.username}}</td>
+                <td md-cell>{{item.user.local.username || item.user.facebook.name}} </td>
                 <td md-cell>{{item.created_at | date:'medium' }}</td>
                 <td md-cell>{{item.mark}}</td>
                 <td md-cell ng-if="item.markByPercent > 50">Pass</td>

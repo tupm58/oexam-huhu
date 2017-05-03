@@ -1,7 +1,7 @@
 <div style="background-color: #8BC34A; height: 100vh;" class="md-padding">
     <div ng-if="vm.gameState == 'waitingRoom'">
         <div layout-align="center center" layout="column">
-            <div style="font-size: 120px; ">
+            <div style="font-size: 110px; ">
                 <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
                     <md-card-actions layout="row" layout-align="end center">
                         PIN : <b>{{vm.gameId}}</b>
@@ -24,7 +24,7 @@
 
         <md-list layout-gt-md="row" layout-wrap>
             <md-list-item flex="30" class="md-3-line" ng-repeat="user in vm.listUserInGame" ng-click="null">
-                <img ng-src="http://localhost:8000{{user.avatar}}" class="md-avatar"/>
+                <img ng-src="http://{{user.avatar}}" class="md-avatar"/>
                 <div class="md-list-item-text" layout="column">
                     <h3><b>{{ user.username }}</b></h3>
                 </div>
@@ -48,11 +48,11 @@
                     </md-toolbar>
                     <md-content class="md-padding" >
                         <div ng-if="vm.currentQuestion.img">
-                            <img ng-src="http://localhost:8000{{vm.currentQuestion.img}}" alt="">
+                            <img ng-src="https://damp-brushlands-61241.herokuapp.com{{vm.currentQuestion.img}}" alt="">
                         </div>
                         <br>
                         <div ng-if="vm.currentQuestion.audio">
-                            <audio src="{{ 'http://localhost:8000'  + vm.currentQuestion.audio | trustUrl}}" type="audio/mp3"
+                            <audio src="{{ 'https://damp-brushlands-61241.herokuapp.com'  + vm.currentQuestion.audio | trustUrl}}" type="audio/mp3"
                                    controls></audio>
                         </div>
                         <br>
@@ -116,7 +116,7 @@
                 <tbody>
                 <tr ng-repeat="data in vm.leaderBoard | orderBy: 'data.totalScore':true track by $index  ">
                     <td data-title="ID">{{$index + 1}}</td>
-                    <td data-title="Issue">{{data._id.local.username}}</td>
+                    <td data-title="Issue">{{data._id.local.username || data._id.facebook.name }}</td>
                     <td data-title="Status">{{data.totalScore}}</td>
                 </tr>
                 </tbody>
@@ -141,7 +141,7 @@
                 <tbody>
                 <tr ng-repeat="data in vm.leaderBoard |orderBy: 'data.totalScore':true track by $index">
                     <td data-title="ID">{{$index + 1}}</td>
-                    <td data-title="Issue">{{data._id.local.username}}</td>
+                    <td data-title="Issue">{{data._id.local.username || data._id.facebook.name}}</td>
                     <td data-title="Status">{{data.totalScore}}</td>
                 </tr>
                 </tbody>
