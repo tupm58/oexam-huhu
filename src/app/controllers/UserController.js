@@ -25,7 +25,7 @@
                     localStorage.setItem('avatar',res.data.profile.facebook.img);
                     localStorage.setItem('userId',res.data.profile._id);
 
-                    $state.go('home.dashboard');
+                    $state.go('home.exam');
                 }).catch(function(err){
 
             })

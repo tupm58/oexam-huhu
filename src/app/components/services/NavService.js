@@ -9,16 +9,16 @@
 
     function navService($q) {
         var menuItems = [
-            {
-                name: 'Dashboard',
-                icon: 'dashboard',
-                sref: '.dashboard'
-            },
-            {
-                name: 'Profile',
-                icon: 'person',
-                sref: '.profile'
-            },
+            // {
+            //     name: 'Dashboard',
+            //     icon: 'dashboard',
+            //     sref: '.dashboard'
+            // },
+            // {
+            //     name: 'Profile',
+            //     icon: 'person',
+            //     sref: '.profile'
+            // },
             // {
             //     name: 'Table',
             //     icon: 'view_module',

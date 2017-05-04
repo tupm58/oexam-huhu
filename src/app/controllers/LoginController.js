@@ -49,7 +49,7 @@
                     localStorage.setItem('avatar',res.data.profile.local.img);
                     localStorage.setItem('userId',res.data.profile._id);
 
-                    $state.go('home.dashboard');
+                    $state.go('home.exam');
                 }).catch(function(err){
 
             })
