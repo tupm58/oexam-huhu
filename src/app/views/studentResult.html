@@ -14,7 +14,7 @@
         <table md-table  class="table table-hover table-bordered" >
             <thead md-head md-order="myOrder" md-on-reorder="vm.getItems()">
             <tr md-row>
-                <th md-column md-order-by="user.local.username"><span>Student Name</span></th>
+                <th md-column md-order-by="user.facebook.name"><span>Student Name</span></th>
                 <th md-column md-numeric md-order-by="created_at"><span>Date</span></th>
                 <th md-column md-numeric md-order-by="mark"><span>Mark</span></th>
                 <th md-column md-numeric md-order-by="markByPercent">Pass</th>
@@ -31,6 +31,7 @@
                 <td md-cell ng-if="item.markByPercent <= 50">Fail</td>
 
                 <td md-cell>
+                    {{item.markByPercent}}
                     <md-progress-linear  ng-if="item.markByPercent > 50"class="table-progress  md-accent                                                                                        "
                                         md-mode="determinate"
                                         value={{item.markByPercent}}>
